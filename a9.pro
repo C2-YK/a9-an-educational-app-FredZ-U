@@ -10,34 +10,26 @@ CONFIG += c++11
 
 SOURCES += \
     action.cpp \
-    block.cpp \
     bot.cpp \
     boteditor.cpp \
-    coin.cpp \
     connecter.cpp \
     gamemode.cpp \
     main.cpp \
     maze.cpp \
     mazeeditor.cpp \
     previewer.cpp \
-    space.cpp \
-    viewer.cpp \
-    wall.cpp
+    viewer.cpp
 
 HEADERS += \
     action.h \
-    block.h \
     bot.h \
     boteditor.h \
-    coin.h \
     connecter.h \
     gamemode.h \
     maze.h \
     mazeeditor.h \
     previewer.h \
-    space.h \
-    viewer.h \
-    wall.h
+    viewer.h
 
 FORMS += \
     viewer.ui
