@@ -6,52 +6,13 @@ Bot::Bot()
     reset();
 }
 
-void Bot::hit(){
-    hited = true;
+//methods for bot editing
+void Bot::addAction(int action){
+    actions.append(action);
 }
 
-int Bot::act(){
-    if(end){
-        return noAction;
-    }
-    //read this action
-    int action = actions[actionPointer];
-
-    int loopCount = 0;//prevent endless loop
-    while((action == Do || action == UntilHit) && !end){
-        if(action == Do){
-            stack.append(actionPointer + 1);
-            actionPointer++;
-            action = actions[actionPointer];
-        }
-        if(action == UntilHit){
-            if(hited){
-                hited = false;
-                stack.pop_back();
-                actionPointer++;
-            }else{
-                actionPointer = stack[stack.size() - 1];
-            }
-        }
-
-        loopCount++;
-        //if the bot loop forever, stop the bot
-        if(loopCount>maxLoopCount){
-            end = true;
-        }
-    }
-    actionPointer++;
-    //after pushing the pointer, if reach end, stop the bot
-    if(actionPointer == actions.size()){
-        end = true;
-    }
-    return actions[actionPointer];
-}
-
-void Bot::reset(){
-    actionPointer = 0;
-    hited = false;
-    end = compile();
+void Bot::removeLastAction(){
+    actions.pop_back();
 }
 
 bool Bot::compile(){
@@ -67,4 +28,57 @@ bool Bot::compile(){
         }
     }
     return stack.size() == 0;
+}
+
+//methods for game mode
+void Bot::hit(){
+    hited = true;
+}
+
+int Bot::act(){
+    if(actionPointer == actions.size()){
+        stop = true;
+    }
+    if(stop){
+        return noAction;
+    }
+    //read this action
+    int action = actions[actionPointer];
+
+    int loopCount = 0;//prevent endless loop
+    //if action is Do or UntilHit
+    //read next until the action is not Do or UntilHit
+    while((action == Do || action == UntilHit) && !stop){
+        if(action == Do){
+            hited = false;
+            loopHeads.append(actionPointer + 1);//memorize the index after Do
+            actionPointer++;
+            action = actions[actionPointer];
+        }
+        else if(action == UntilHit){
+            if(hited){
+                hited = false;
+                loopHeads.pop_back();//clean the index on stack
+                actionPointer++;
+                action = actions[actionPointer];
+            }else{
+                actionPointer = loopHeads[loopHeads.size() - 1];//back to the index on stack
+            }
+        }
+
+        loopCount++;
+        //if the bot loop forever, stop the bot
+        if(loopCount > maxLoopCount){
+            stop = true;
+            return noAction;
+        }
+    }
+    actionPointer++;
+    return action;
+}
+
+void Bot::reset(){
+    actionPointer = 0;
+    hited = false;
+    stop = compile();
 }

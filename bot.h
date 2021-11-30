@@ -9,6 +9,11 @@ class Bot
 {
 public:
     Bot();
+    //methods for bot editing
+    void addAction(int action);
+    void removeLastAction();
+    bool compile();
+    //methods for game mode
     void hit();
     int act();
     void reset();
@@ -21,11 +26,10 @@ public:
 private:
     int actionPointer;
     bool hited;
-    bool end;
+    bool stop;
     const int maxLoopCount = 10;
-    QList<int> stack;
+    QList<int> loopHeads;
     QList<int> actions;
-    bool compile();
 
 };
 

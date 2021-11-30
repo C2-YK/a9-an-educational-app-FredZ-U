@@ -11,24 +11,26 @@ CONFIG += c++11
 SOURCES += \
     bot.cpp \
     boteditor.cpp \
+    boteditorpreviewer.cpp \
     connecter.cpp \
     filesystem.cpp \
     gamemode.cpp \
     main.cpp \
     maze.cpp \
     mazeeditor.cpp \
-    previewer.cpp \
+    mazeeditorpreviewer.cpp \
     viewer.cpp
 
 HEADERS += \
     bot.h \
     boteditor.h \
+    boteditorpreviewer.h \
     connecter.h \
     filesystem.h \
     gamemode.h \
     maze.h \
     mazeeditor.h \
-    previewer.h \
+    mazeeditorpreviewer.h \
     viewer.h
 
 FORMS += \
