@@ -1,6 +1,6 @@
 #include "boteditorRender.h"
 
-BotEditorPreviewer::BotEditorPreviewer()
+BotEditorRender::BotEditorRender()
 {
 
 }

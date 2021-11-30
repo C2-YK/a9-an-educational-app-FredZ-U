@@ -5,7 +5,7 @@
 #include "maze.h"
 #include "bot.h"
 
-class GameMode
+class GameMode : public QObject
 {
     Q_OBJECT
 public:

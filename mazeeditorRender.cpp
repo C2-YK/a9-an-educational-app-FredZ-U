@@ -1,6 +1,6 @@
 #include "mazeeditorRender.h"
 
-MazeEditorPreviewer::MazeEditorPreviewer()
+MazeEditorRender::MazeEditorRender()
 {
 
 }

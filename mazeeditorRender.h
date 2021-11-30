@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-class Previewer
+class MazeEditorRender : public QObject
 {
     Q_OBJECT
 public:
-    Previewer();
+    MazeEditorRender();
 };
 
 #endif // MAZEEDITORRENDER_H

@@ -1,9 +1,13 @@
 #include "bot.h"
-
+#include <box2d/box2d.h>
 Bot::Bot()
 {
     actions.append(noAction);
     reset();
+    b2BodyDef groundBodyDef;
+    groundBodyDef.position.Set(0.0f, 20.0f);
+
+
 }
 
 //methods for bot editing

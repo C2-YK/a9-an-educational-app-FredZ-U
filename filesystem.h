@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class FileSystem
+class FileSystem : public QObject
 {
     Q_OBJECT
 public:

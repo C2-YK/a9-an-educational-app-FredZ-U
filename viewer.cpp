@@ -6,6 +6,7 @@ Viewer::Viewer(QWidget *parent)
     , ui(new Ui::Viewer)
 {
     ui->setupUi(this);
+
 }
 
 Viewer::~Viewer()

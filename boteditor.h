@@ -4,7 +4,7 @@
 #include <QObject>
 #include "bot.h"
 
-class BotEditor
+class BotEditor : public QObject
 {
     Q_OBJECT
 public:

@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-class BotEditorPreviewer
+class BotEditorRender : public QObject
 {
     Q_OBJECT
 public:
-    BotEditorPreviewer();
+    BotEditorRender();
 };
 
 #endif // BOTEDITORRENDER_H

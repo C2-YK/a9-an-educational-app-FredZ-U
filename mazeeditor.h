@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class MazeEditor
+class MazeEditor : public QObject
 {
     Q_OBJECT
 public:
