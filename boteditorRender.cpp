@@ -1,4 +1,4 @@
-#include "boteditorpreviewer.h"
+#include "boteditorRender.h"
 
 BotEditorPreviewer::BotEditorPreviewer()
 {

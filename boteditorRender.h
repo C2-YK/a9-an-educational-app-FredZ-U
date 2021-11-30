@@ -1,5 +1,5 @@
-#ifndef BOTEDITORPREVIEWER_H
-#define BOTEDITORPREVIEWER_H
+#ifndef BOTEDITORRENDER_H
+#define BOTEDITORRENDER_H
 
 #include <QObject>
 
@@ -10,4 +10,4 @@ public:
     BotEditorPreviewer();
 };
 
-#endif // BOTEDITORPREVIEWER_H
+#endif // BOTEDITORRENDER_H

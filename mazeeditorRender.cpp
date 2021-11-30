@@ -1,4 +1,4 @@
-#include "mazeeditorpreviewer.h"
+#include "mazeeditorRender.h"
 
 MazeEditorPreviewer::MazeEditorPreviewer()
 {
