@@ -9,10 +9,10 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    action.cpp \
     bot.cpp \
     boteditor.cpp \
     connecter.cpp \
+    filesystem.cpp \
     gamemode.cpp \
     main.cpp \
     maze.cpp \
@@ -21,10 +21,10 @@ SOURCES += \
     viewer.cpp
 
 HEADERS += \
-    action.h \
     bot.h \
     boteditor.h \
     connecter.h \
+    filesystem.h \
     gamemode.h \
     maze.h \
     mazeeditor.h \

@@ -9,14 +9,24 @@ class Bot
 {
 public:
     Bot();
-    Bot(QPoint spawnPosition);
+    void hit();
+    int act();
+    void reset();
+    const int Do = 0;
+    const int UntilHit = 1;
+    const int Forward = 2;
+    const int Right = 3;
+    const int Left = 4;
+    const int noAction = 5;
 private:
-    QList<QString*> actions;
-    QPoint position;
-    QString moveForward = "moveForward";
-    QString turnRight = "turnRight";
-    QString turnLeft = "turnLeft";
-    QString loopString = "loopString";
+    int actionPointer;
+    bool hited;
+    bool end;
+    const int maxLoopCount = 10;
+    QList<int> stack;
+    QList<int> actions;
+    bool compile();
+
 };
 
 #endif // BOT_H
