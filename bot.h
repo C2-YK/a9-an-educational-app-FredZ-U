@@ -11,7 +11,7 @@ public:
     Bot();
     //methods for bot editing
     void addAction(int action);
-    void removeLastAction();
+    bool removeLastAction();
     bool compile();
     //methods for game mode
     void hit();

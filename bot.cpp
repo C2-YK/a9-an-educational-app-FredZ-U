@@ -15,8 +15,12 @@ void Bot::addAction(int action){
     actions.append(action);
 }
 
-void Bot::removeLastAction(){
+bool Bot::removeLastAction(){
+    if(actions.size() == 0){
+        return false;
+    }
     actions.pop_back();
+    return true;
 }
 
 bool Bot::compile(){

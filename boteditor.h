@@ -17,6 +17,8 @@ public slots:
     void addRight();
     void addLeft();
     void addNoAction();
+    void removeLastAction();
+    void removeAllActions();
 signals:
     void updatePreviewer();
 private:
