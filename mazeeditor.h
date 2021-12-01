@@ -2,6 +2,7 @@
 #define MAZEEDITOR_H
 
 #include <QObject>
+#include <QPoint>
 
 class MazeEditor : public QObject
 {
