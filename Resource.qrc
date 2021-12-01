@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>res/coin.png</file>
+        <file>res/eraser.png</file>
+        <file>res/start-point.png</file>
+        <file>res/wall.png</file>
+    </qresource>
+</RCC>
