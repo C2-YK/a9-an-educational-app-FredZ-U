@@ -6,7 +6,7 @@ Maze::Maze()
     width = 10;
     fillEdgesWithWalls();
     map[getIndex(startPoint)] = start;
-    maxCoins = 0;
+    coins = 0;
 }
 
 Maze::Maze(int h, int w){
@@ -14,21 +14,36 @@ Maze::Maze(int h, int w){
     width = w;
     fillEdgesWithWalls();
     map[getIndex(startPoint)] = start;
-    maxCoins = 0;
+    coins = 0;
 }
 
 Maze::Maze(int h, int w, QList<int> map){
     this->map = map;
     height = h;
     width = w;
-    maxCoins = 0;
+    coins = 0;
     for(int x = 0; x < w; x++){
         for(int y = 0; y < h; y ++){
             if(getObject(x, y) == coin){
-                maxCoins++;
+                coins++;
             }
         }
     }
+}
+
+Maze::Maze(const Maze& other){
+    height = other.height;
+    width = other.width;
+    coins = other.coins;
+    map = other.map;
+}
+
+Maze& Maze::operator=(Maze other){
+    std::swap(height, other.height);
+    std::swap(width, other.width);
+    std::swap(coins, other.coins);
+    std::swap(map, other.map);
+    return *this;
 }
 
 //edit maze methods
@@ -57,7 +72,7 @@ bool Maze::addWall(int x, int y){
     }
     //if the point is coin, remove the coin from map
     if(getObject(x, y) == coin){
-        maxCoins -= 1;
+        coins -= 1;
     }
     objectAt(x, y) = wall;
     return true;
@@ -73,7 +88,7 @@ bool Maze::addCoin(int x, int y){
         return false;
     }
     objectAt(x, y) = coin;
-    maxCoins += 1;
+    coins += 1;
     return true;
 }
 
@@ -91,10 +106,24 @@ bool Maze::addSpace(int x, int y){
     }
     //if the point is coin, remove the coin from map
     if(getObject(x, y) == coin){
-        maxCoins -= 1;
+        coins -= 1;
     }
     objectAt(x, y) = space;
     return true;
+}
+
+//game play method
+bool Maze::collectCoin(int x, int y){
+    if(getObject(x, y) == coin){
+        objectAt(x, y) = space;
+        coins -= 1;
+        return true;
+    }
+    return false;
+}
+
+bool Maze::clear(){
+    return coins == 0;
 }
 
 //for saving to jason

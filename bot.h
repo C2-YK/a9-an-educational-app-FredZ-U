@@ -3,6 +3,7 @@
 #include <QList>
 #include <QString>
 #include <QPoint>
+#include "box2d/b2_body.h"
 
 
 class Bot

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QPoint>
 #include <QVector2D>
+#include <QString>
 
 class MazeEditor : public QObject
 {
@@ -14,13 +15,15 @@ public:
 public slots:
     void switchTool(int toolIndex);
     void useToolOn(QPoint position);
+signals:
+    void success(QString, bool);
 private:
     Maze* target;
     int toolIndex;
     void addWall(QPoint position);
     void addSpace(QPoint position);
     void addCoin(QPoint position);
-    void movePosition(QPoint position);
+    void changeStartTo(QPoint position);
 
 };
 #endif // MAZEEDITOR_H
