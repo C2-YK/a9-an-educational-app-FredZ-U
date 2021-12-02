@@ -5,18 +5,25 @@ FileSystem::FileSystem()
 
 }
 
+void FileSystem:: setMaze(Maze * target)
+{
+    maze = target;
+}
+
 bool FileSystem::loadMazeFromFile(QString filepath)
 {
     QFile loadFile(filepath);
     if(!loadFile.open(QIODevice::ReadOnly))
     {
         qWarning("Could not open the file.");
+        emit loadCallback(false);
         return false;
     }
 
     QByteArray saveData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
-    //mazeReader(loadDoc.object(),*maze);
+    mazeReader(loadDoc.object(),*maze);
+    emit loadCallback(true);
     return true;
 }
 
@@ -26,6 +33,7 @@ bool FileSystem::saveMazeToFile(QString filename)
     if(!saveFile.open(QIODevice::WriteOnly))
     {
         qWarning("Could not open the file in a writing way");
+        emit saveCallback(false);
         return false;
     }
 
@@ -33,6 +41,7 @@ bool FileSystem::saveMazeToFile(QString filename)
     mazeWriter(mazeObject);
     QJsonDocument saveDoc(mazeObject);
     saveFile.write(saveDoc.toJson());
+    emit saveCallback(true);
     return true;
 }
 
@@ -48,4 +57,18 @@ void FileSystem:: mazeWriter(QJsonObject &json)
         mapInfo.append(" ");
     }
     json["info"] = mapInfo;
+}
+
+void FileSystem:: mazeReader(const QJsonObject &json, Maze& maze)
+{
+    int height = json["height"].toInt();
+    int width = json["width"].toInt();
+    QString s = json["info"].toString();
+    QStringList infoList = s.split(QRegularExpression("\\W+"),Qt::SkipEmptyParts);
+    QList<int> map;
+    foreach(QString mapInfo,infoList)
+    {
+        map.append(mapInfo.toInt());
+    }
+    maze = Maze(height,width,map);
 }

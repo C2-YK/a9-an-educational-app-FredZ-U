@@ -15,12 +15,17 @@ class FileSystem : public QObject
     Q_OBJECT
 public:
     FileSystem();
+    void setMaze(Maze*);
+public slots:
     bool loadMazeFromFile(QString);
     bool saveMazeToFile(QString);
+signals:
+    void loadCallback(bool);
+    void saveCallback(bool);
 private:
     Maze *maze;
     void mazeWriter(QJsonObject&);
-    Maze mazeReader(QJsonObject&);
+    void mazeReader(const QJsonObject&, Maze&);
 
 
 };
