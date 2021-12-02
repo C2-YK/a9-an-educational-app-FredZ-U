@@ -4,10 +4,10 @@ Bot::Bot()
 {
     actions.append(noAction);
     reset();
-    b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(0.0f, 20.0f);
-
-
+    directions.append(dr_top);
+    directions.append(dr_right);
+    directions.append(dr_down);
+    directions.append(dr_left);
 }
 
 //methods for bot editing
@@ -82,6 +82,20 @@ int Bot::act(){
         }
     }
     actionPointer++;
+
+    //change direction
+    if(action == Right){
+        direction++;
+        if(direction == directions.size()){
+            direction = 0;
+        }
+    }else if(action == Left){
+        direction--;
+        if(direction < 0){
+            direction = directions.size() - 1;
+        }
+    }
+
     return action;
 }
 
@@ -89,4 +103,9 @@ void Bot::reset(){
     actionPointer = 0;
     hited = false;
     stop = compile();
+    direction = 0;
+}
+
+QPoint Bot::getDirection(){
+    return directions[direction];
 }
