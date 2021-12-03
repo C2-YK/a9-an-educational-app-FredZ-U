@@ -122,7 +122,7 @@ bool Maze::collectCoin(int x, int y){
     return false;
 }
 
-bool Maze::clear(){
+bool Maze::coinClear(){
     return coins == 0;
 }
 

@@ -18,14 +18,21 @@ public slots:
     void start();
     void setBot(Bot*);
     void setMaze(Maze*);
+    void stop();
 signals:
-    void render(Maze maze, b2Vec2 playerPos);
+    void updateGameData(const Maze& maze, const b2Vec2& playerPos, const int& score);
+    void playRotateAnimation(int dir);// >0 clockwise <0 counter
+    void winEvent();
+    void stopEvent();
 private:
     Bot* bot;
     Maze* masterMaze;
     Maze maze;
     QTimer timer;
     bool win;
+    bool stoped;
+    int updateCount;
+    int score;
     b2World world;
     QList<b2Vec2> coinBodies;
     QList<b2Body*> wallBodies;
@@ -37,6 +44,9 @@ private:
     float unitDistance = 2 * wallSize;
     float playerSize = 5;
     float triggerSensitive = 0.1;
+    float playerSpeed = 10;
+    int timerStep = 50;
+    int botStep = 1000;
     void initGame();
     void createWall(float x, float y);
     void createPlayer(float x, float y);

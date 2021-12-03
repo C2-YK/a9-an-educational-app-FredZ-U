@@ -7,7 +7,7 @@ GameMode::GameMode() : world(b2Vec2(0, 0))
 void GameMode::start(){
     initGame();
     connect(&timer, &QTimer::timeout, this, &GameMode::updateWorld);
-    timer.start(50);
+    timer.start(timerStep);
 }
 
 void GameMode::setBot(Bot* b){
@@ -16,6 +16,10 @@ void GameMode::setBot(Bot* b){
 
 void GameMode::setMaze(Maze* m){
     masterMaze = m;
+}
+
+void GameMode::stop(){
+    stoped = true;
 }
 
 void GameMode::initGame(){
@@ -34,6 +38,9 @@ void GameMode::initGame(){
         }
     }
     maze = *masterMaze; //make copy of master maze
+    updateCount = 0;
+    stoped = false;
+    score = 0;
 }
 
 void GameMode::createWall(float x, float y){
@@ -70,7 +77,9 @@ void GameMode::trigger(){
     float y = player->GetPosition().y;
     //collect this locations coin if have any
     QPoint playerLoc = getMazeLocation(x, y);
-    maze.collectCoin(playerLoc.x(), playerLoc.y());
+    if(maze.collectCoin(playerLoc.x(), playerLoc.y())){
+        score++;
+    }
     //collide check with moving direction
     QPoint dir = bot->getDirection();
     QPoint triggerDis = QPoint(dir.x()*triggerSensitive, dir.y()*triggerSensitive);
@@ -87,9 +96,35 @@ void GameMode::trigger(){
 }
 
 void GameMode::checkWin(){
-    win = maze.clear();
+    win = maze.coinClear();
 }
 
 void GameMode::updateWorld(){
+    if(stoped){
+        timer.stop();
+        emit stopEvent();
+    }
+    checkWin();
+    if(win){
+        timer.stop();
+        emit winEvent();
+    }
+    updateCount++;
+    if(updateCount >= botStep/timerStep){
+        int action = bot->act();
+        //reset player movement
+        player->SetLinearVelocity(b2Vec2(0, 0));
+        if(action == bot->Forward){
+            QPoint dir = bot->getDirection();
+            player->SetLinearVelocity(b2Vec2(dir.x()*playerSpeed, dir.y()*playerSpeed));
+        }else if(action == bot->Right){
+            emit playRotateAnimation(1);
+        }else if(action == bot->Left){
+            emit playRotateAnimation(-1);
+        }
+        updateCount = 0;
+    }
     world.Step(1.0/60.0, 6, 2);
+    trigger();
+    emit updateGameData(maze, player->GetPosition(), score);
 }

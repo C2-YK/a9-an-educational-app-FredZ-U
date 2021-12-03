@@ -21,7 +21,7 @@ public:
     //game play method
     bool collectCoin(int x, int y);
     int getObject(int x, int y);
-    bool clear();
+    bool coinClear();
     //for saving to jason
     QList<int> getMap();
     int getHeight();

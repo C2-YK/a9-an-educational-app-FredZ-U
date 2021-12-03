@@ -20,6 +20,7 @@ SOURCES += \
     maze.cpp \
     mazeeditor.cpp \
     mazeeditorRender.cpp \
+    renderObject.cpp \
     viewer.cpp
 
 HEADERS += \
@@ -33,6 +34,7 @@ HEADERS += \
     maze.h \
     mazeeditor.h \
     mazeeditorRender.h \
+    renderObject.h \
     viewer.h
 
 FORMS += \
