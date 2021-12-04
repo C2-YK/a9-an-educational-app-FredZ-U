@@ -5,7 +5,7 @@ BotEditor::BotEditor()
 
 }
 
-void BotEditor::setTarget(Bot * b){
+void BotEditor::setBot(Bot * b){
     target = b;
 }
 

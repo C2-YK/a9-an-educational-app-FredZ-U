@@ -24,8 +24,11 @@ signals:
     void playRotateAnimation(int dir);// >0 clockwise <0 counter
     void setToSpace(int index);
     void updateCoins(int score);
+    void setPlayerSize(float);
+    void setMazeData(Maze, QList<b2Vec2>, float);
     void winEvent();
     void stopEvent();
+    void startEvent();
 private:
     Bot* bot;
     Maze* masterMaze;

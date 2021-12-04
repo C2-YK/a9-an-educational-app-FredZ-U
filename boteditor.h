@@ -9,7 +9,7 @@ class BotEditor : public QObject
     Q_OBJECT
 public:
     BotEditor();
-    void setTarget(Bot*);
+    void setBot(Bot*);
 public slots:
     void addDo();
     void addUntilHit();

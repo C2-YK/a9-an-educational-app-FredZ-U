@@ -6,6 +6,7 @@ GameMode::GameMode() : world(b2Vec2(0, 0))
 
 void GameMode::start(){
     initGame();
+    emit startEvent();
     connect(&timer, &QTimer::timeout, this, &GameMode::updateWorld);
     timer.start(timerStep);
 }
@@ -28,6 +29,7 @@ void GameMode::initGame(){
     win = false;
     //create world
     world = b2World(b2Vec2(0, 0));
+    QList<b2Vec2> pos;
     for(int x = 0; x < w; x++){
         for(int y = 0; y < h; y++){
             if(masterMaze->getObject(x, y) == masterMaze->wall){
@@ -35,12 +37,16 @@ void GameMode::initGame(){
             }else if(masterMaze->getObject(x, y) == masterMaze->start){
                 createPlayer(x * unitDistance, y * unitDistance);
             }
+            pos.append(b2Vec2(x * unitDistance, y * unitDistance));
         }
     }
     maze = *masterMaze; //make copy of master maze
     updateCount = 0;
     stoped = false;
     score = 0;
+
+    emit setMazeData(maze, pos, unitDistance);
+    emit setPlayerSize(playerSize);
 }
 
 void GameMode::createWall(float x, float y){

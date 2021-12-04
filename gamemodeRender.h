@@ -5,6 +5,9 @@
 #include <QColor>
 #include <QList>
 #include <QPoint>
+#include <QPixmap>
+#include <QPainter>
+#include <QTimer>
 #include "renderObject.h"
 #include "maze.h"
 #include "box2d/b2_body.h"
@@ -16,13 +19,14 @@ public:
     GameModeRender();
 public slots:
     void startRender();
+    void stopRender();
+    void render();
     void setMazeData(Maze, QList<b2Vec2>, float);
-    void setPlayerPosition(const b2Vec2);
+    void setPlayerPosition(b2Vec2 pp);
     void setPlayerSize(float);
     void setToSpace(int index);
 signals:
-    void renderMaze(const QList<RenderObject>&);
-    void renderPlayer(const RenderObject& player);
+    void updateScene(const QPixmap& scene);
 private:
     const QColor wallColor = QColor(0, 0, 0, 255);
     const QColor coinColor = QColor(255, 255, 0, 255);
@@ -31,7 +35,11 @@ private:
     const QColor playerColor = QColor(0, 0, 255, 255);
     QList<RenderObject> maze;
     RenderObject player;
+    QPixmap scene;
     int scale = 20;
+    int FPS = 30;
+    int sceneWidth;
+    int sceneHeight;
     bool rendering = false;
 };
 

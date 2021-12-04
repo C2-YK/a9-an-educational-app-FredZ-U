@@ -29,7 +29,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -144,7 +144,7 @@
      <attribute name="title">
       <string>Game Window</string>
      </attribute>
-     <widget class="QListWidget" name="commandList">
+     <widget class="QListWidget" name="actionList">
       <property name="geometry">
        <rect>
         <x>710</x>
@@ -182,6 +182,84 @@
        <string>Start</string>
       </property>
      </widget>
+     <widget class="QLabel" name="gameScene">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>50</y>
+        <width>621</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="DoButton">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>410</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Do</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="UntilButton">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>430</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Until</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="RightButton">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>450</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Right</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="LeftButton">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>470</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Left</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ForwardButton">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>490</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Forward</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -191,7 +269,7 @@
      <x>0</x>
      <y>0</y>
      <width>807</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

@@ -11,7 +11,7 @@ class BotEditorRender : public QObject
     Q_OBJECT
 public:
     BotEditorRender();
-    void setTarget(Bot*);
+    void setBot(Bot*);
     void updateViewer();
 signals:
     void updateActions(QList<QString> actions);

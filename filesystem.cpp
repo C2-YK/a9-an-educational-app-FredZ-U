@@ -5,12 +5,16 @@ FileSystem::FileSystem()
 
 }
 
-void FileSystem:: setMaze(Maze * target)
+void FileSystem:: setEditorMaze(Maze * target)
 {
-    maze = target;
+    editorMaze = target;
 }
 
-bool FileSystem::loadMazeFromFile(QString filepath)
+void FileSystem::setGamemodeMaze(Maze * target){
+    gamemodeMaze = target;
+}
+
+bool FileSystem::loadMazeToEditor(QString filepath)
 {
     QFile loadFile(filepath);
     if(!loadFile.open(QIODevice::ReadOnly))
@@ -22,7 +26,23 @@ bool FileSystem::loadMazeFromFile(QString filepath)
 
     QByteArray saveData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
-    mazeReader(loadDoc.object(),*maze);
+    mazeReader(loadDoc.object(),*editorMaze);
+    emit loadCallback(true);
+    return true;
+}
+
+bool FileSystem::loadMazeToGamemode(QString filepath){
+    QFile loadFile(filepath);
+    if(!loadFile.open(QIODevice::ReadOnly))
+    {
+        qWarning("Could not open the file.");
+        emit loadCallback(false);
+        return false;
+    }
+
+    QByteArray saveData = loadFile.readAll();
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
+    mazeReader(loadDoc.object(),*gamemodeMaze);
     emit loadCallback(true);
     return true;
 }
@@ -47,9 +67,9 @@ bool FileSystem::saveMazeToFile(QString filename)
 
 void FileSystem:: mazeWriter(QJsonObject &json)
 {
-    json["height"] = maze->getHeight();
-    json["width"] = maze->getWidth();
-    QList<int> map(maze->getMap());
+    json["height"] = editorMaze->getHeight();
+    json["width"] = editorMaze->getWidth();
+    QList<int> map(editorMaze->getMap());
     QString mapInfo;
     foreach(int info,map)
     {
