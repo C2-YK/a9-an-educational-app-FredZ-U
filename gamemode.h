@@ -20,8 +20,10 @@ public slots:
     void setMaze(Maze*);
     void stop();
 signals:
-    void updateGameData(const Maze& maze, const b2Vec2& playerPos, const int& score);
+    void updatePlayerPosition(const b2Vec2& playerPos);
     void playRotateAnimation(int dir);// >0 clockwise <0 counter
+    void setToSpace(int index);
+    void updateCoins(int score);
     void winEvent();
     void stopEvent();
 private:

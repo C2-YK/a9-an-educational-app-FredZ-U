@@ -9,6 +9,7 @@ class RenderObject
 {
 public:
     RenderObject();
+    RenderObject(QPoint location, QColor color, int size);
     bool hasTexture;
     QPoint getLocation();
     void setLocation(QPoint location);

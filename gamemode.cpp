@@ -79,6 +79,8 @@ void GameMode::trigger(){
     QPoint playerLoc = getMazeLocation(x, y);
     if(maze.collectCoin(playerLoc.x(), playerLoc.y())){
         score++;
+        emit setToSpace(playerLoc.x() + maze.getWidth() * playerLoc.y());
+        emit updateCoins(score);
     }
     //collide check with moving direction
     QPoint dir = bot->getDirection();
@@ -126,5 +128,5 @@ void GameMode::updateWorld(){
     }
     world.Step(1.0/60.0, 6, 2);
     trigger();
-    emit updateGameData(maze, player->GetPosition(), score);
+    emit updatePlayerPosition(player->GetPosition());
 }
