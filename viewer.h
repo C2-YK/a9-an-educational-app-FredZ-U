@@ -30,12 +30,23 @@ public slots:
     void saveCallback(bool success);
     void loadCallback(bool success);
     void updateScene(const QPixmap& scene);
+    void compiled(bool success);
+    void winEvent();
 signals:
     void resize(int height, int width);
     void switchToolTo(int toolIndex);
     void useToolOn(QPoint position);
     void saveSprite(QString filename);
     void loadJason(QString filepath);
+    void addDo();
+    void addUntilHit();
+    void addRight();
+    void addLeft();
+    void addForward();
+    void deleteAction(int index);
+    void clearActions();
+    void gameStart();
+    void gameStop();
 
 private slots:
 
@@ -80,6 +91,7 @@ private:
     Ui::Viewer *ui;
     Maze* maze;
     bool changed;
+    bool gameStarted = false;
     QPoint drawingPivot = QPoint(160,80);
     QPoint movePivot;
     QPoint blockPos;

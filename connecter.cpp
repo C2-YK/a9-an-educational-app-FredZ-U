@@ -14,13 +14,24 @@ Connecter::Connecter()
 }
 
 void Connecter::connect_Viewer_BotEditor(){
+    QObject::connect(&viewer, &Viewer::addDo, &botEditor, &BotEditor::addDo);
+    QObject::connect(&viewer, &Viewer::addUntilHit, &botEditor, &BotEditor::addUntilHit);
+    QObject::connect(&viewer, &Viewer::addRight, &botEditor, &BotEditor::addRight);
+    QObject::connect(&viewer, &Viewer::addLeft, &botEditor, &BotEditor::addLeft);
+    QObject::connect(&viewer, &Viewer::addForward, &botEditor, &BotEditor::addForward);
 
+    QObject::connect(&viewer, &Viewer::clearActions, &botEditor, &BotEditor::clearActions);
+    QObject::connect(&viewer, &Viewer::deleteAction, &botEditor, &BotEditor::deleteAction);
+
+    QObject::connect(&botEditor, &BotEditor::compiled, &viewer, &Viewer::compiled);
 }
 void Connecter::connect_Viewer_FileSystem(){
 
 }
 void Connecter::connect_Viewer_GameMode(){
-
+    QObject::connect(&viewer, &Viewer::gameStart, &gameMode, &GameMode::start);
+    QObject::connect(&viewer, &Viewer::gameStop, &gameMode, &GameMode::stop);
+    QObject::connect(&gameMode, &GameMode::winEvent, &viewer, &Viewer::winEvent);
 }
 void Connecter::connect_Viewer_GameModeRender(){
 

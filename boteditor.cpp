@@ -37,6 +37,6 @@ void BotEditor::removeLastAction(){
     target->removeLastAction();
 }
 
-void BotEditor::removeAllActions(){
+void BotEditor::clearActions(){
     while(target->removeLastAction()){}
 }

@@ -17,10 +17,12 @@ public slots:
     void addRight();
     void addLeft();
     void addNoAction();
+    void deleteAction(int index);
     void removeLastAction();
-    void removeAllActions();
+    void clearActions();
 signals:
     void updatePreviewer();
+    void compiled(bool success);
 private:
     Bot* target;
 

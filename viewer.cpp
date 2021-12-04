@@ -35,6 +35,14 @@ void Viewer::updateScene(const QPixmap& scene){
     repaint();
 }
 
+void Viewer::compiled(bool success){
+    if(success){
+        ui->startButton->setDisabled(true);
+    }else{
+        ui->startButton->setDisabled(false);
+    }
+}
+
 void Viewer::on_actionNew_triggered()
 {
     if(changed){
@@ -101,7 +109,11 @@ void Viewer::on_actionResize_triggered()
 
 void Viewer::on_startButton_clicked()
 {
-
+    if(gameStarted){
+        emit gameStop();
+    }else{
+        emit gameStart();
+    }
 }
 
 void Viewer::mousePressEvent(QMouseEvent * event){
@@ -196,30 +208,35 @@ void Viewer::on_tabWidget_tabBarClicked(int index)
 void Viewer::on_DoButton_clicked()
 {
     addItemToActionList("Do");
+    emit addDo();
 }
 
 
 void Viewer::on_UntilButton_clicked()
 {
-    addItemToActionList("Until");
+    addItemToActionList("Until Hit");
+    emit addUntilHit();
 }
 
 
 void Viewer::on_RightButton_clicked()
 {
     addItemToActionList("Right");
+    emit addRight();
 }
 
 
 void Viewer::on_LeftButton_clicked()
 {
     addItemToActionList("Left");
+    emit addLeft();
 }
 
 
 void Viewer::on_ForwardButton_clicked()
 {
     addItemToActionList("Forward");
+    emit addForward();
 }
 
 void Viewer::addItemToActionList(QString name){
@@ -242,6 +259,7 @@ void Viewer::on_deleteButton_clicked()
         actionList[i] = actionList[i + 1];
     }
     actionList.pop_back();
+    emit deleteAction(id);
     delete ui->actionList->currentItem();
 }
 
@@ -250,5 +268,6 @@ void Viewer::on_cleanButton_clicked()
 {
     actionList = QList<QListWidgetItem *>();
     ui->actionList->clear();
+    emit clearActions();
 }
 
