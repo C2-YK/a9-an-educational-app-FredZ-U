@@ -8,6 +8,7 @@
 #include <QPainter>
 #include <QListWidgetItem>
 #include <QMouseEvent>
+#include <QDebug>
 
 #include "maze.h"
 
@@ -51,6 +52,30 @@ private slots:
 
     void on_startButton_clicked();
 
+    void on_coinButton_clicked();
+
+    void on_wallButton_clicked();
+
+    void on_spaceButton_clicked();
+
+    void on_startPointButton_clicked();
+
+    void on_tabWidget_tabBarClicked(int index);
+
+    void on_DoButton_clicked();
+
+    void on_UntilButton_clicked();
+
+    void on_RightButton_clicked();
+
+    void on_LeftButton_clicked();
+
+    void on_ForwardButton_clicked();
+
+    void on_deleteButton_clicked();
+
+    void on_cleanButton_clicked();
+
 private:
     Ui::Viewer *ui;
     Maze* maze;
@@ -64,7 +89,12 @@ private:
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void wheelEvent(QWheelEvent *);
-    void addItemToactionList();
+    void addItemToActionList(QString name);
+
+    int tool_space = 0;
+    int tool_wall = 1;
+    int tool_coin = 2;
+    int tool_start = 3;
 
     const QColor wallColor = QColor(0, 0, 0, 255);
     const QColor coinColor = QColor(255, 255, 0, 255);

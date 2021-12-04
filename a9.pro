@@ -11,7 +11,6 @@ CONFIG += c++11
 SOURCES += \
     bot.cpp \
     boteditor.cpp \
-    boteditorRender.cpp \
     connecter.cpp \
     filesystem.cpp \
     gamemode.cpp \
@@ -19,21 +18,18 @@ SOURCES += \
     main.cpp \
     maze.cpp \
     mazeeditor.cpp \
-    mazeeditorRender.cpp \
     renderObject.cpp \
     viewer.cpp
 
 HEADERS += \
     bot.h \
     boteditor.h \
-    boteditorRender.h \
     connecter.h \
     filesystem.h \
     gamemode.h \
     gamemodeRender.h \
     maze.h \
     mazeeditor.h \
-    mazeeditorRender.h \
     renderObject.h \
     viewer.h
 

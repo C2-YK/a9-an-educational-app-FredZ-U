@@ -2,6 +2,7 @@
 #define MAZE_H
 #include <QList>
 #include <QPoint>
+#include <QDebug>
 
 class Maze
 {
@@ -38,6 +39,7 @@ private:
     int coins;
     QList<int> map;
     //helper
+    void initMap();
     void fillEdgesWithWalls();
     int getIndex(QPoint postion);
     int& objectAt(int x, int y);

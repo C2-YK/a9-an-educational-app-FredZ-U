@@ -139,13 +139,11 @@ void Viewer::wheelEvent(QWheelEvent * event){
     repaint();
 }
 
-void Viewer::addItemToactionList(){
-
-}
-
 
 void Viewer::paintEvent(QPaintEvent *){
-    QPainter painter(ui->tab);
+    QPixmap scene(ui->editorScene->width(), ui->editorScene->height());
+    scene.fill(QColor("transparent"));
+    QPainter painter(&scene);
     int pos = blockSize+blockOffset;
     for(int i = 0; i < maze->getWidth(); i++){
         for(int j = 0; j < maze->getHeight(); j++){
@@ -162,4 +160,95 @@ void Viewer::paintEvent(QPaintEvent *){
             painter.fillRect(i * pos + drawingPivot.x(), j * pos + drawingPivot.y(), blockSize, blockSize, c);
         }
     }
+    ui->editorScene->setPixmap(scene);
 }
+
+void Viewer::on_coinButton_clicked()
+{
+    emit switchToolTo(tool_coin);
+}
+
+
+void Viewer::on_wallButton_clicked()
+{
+    emit switchToolTo(tool_wall);
+}
+
+
+void Viewer::on_spaceButton_clicked()
+{
+    emit switchToolTo(tool_space);
+}
+
+
+void Viewer::on_startPointButton_clicked()
+{
+    emit switchToolTo(tool_start);
+}
+
+
+void Viewer::on_tabWidget_tabBarClicked(int index)
+{
+
+}
+
+
+void Viewer::on_DoButton_clicked()
+{
+    addItemToActionList("Do");
+}
+
+
+void Viewer::on_UntilButton_clicked()
+{
+    addItemToActionList("Until");
+}
+
+
+void Viewer::on_RightButton_clicked()
+{
+    addItemToActionList("Right");
+}
+
+
+void Viewer::on_LeftButton_clicked()
+{
+    addItemToActionList("Left");
+}
+
+
+void Viewer::on_ForwardButton_clicked()
+{
+    addItemToActionList("Forward");
+}
+
+void Viewer::addItemToActionList(QString name){
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setData(0, name);
+    item->setData(1, actionList.size());
+    ui->actionList->addItem(item);
+    ui->actionList->setCurrentItem(item);
+    actionList.append(item);
+}
+
+
+void Viewer::on_deleteButton_clicked()
+{
+    if(actionList.size() == 0){
+        return;
+    }
+    int id = ui->actionList->currentItem()->data(1).toInt();
+    for(int i = id; i < actionList.size() - 1; i++){
+        actionList[i] = actionList[i + 1];
+    }
+    actionList.pop_back();
+    delete ui->actionList->currentItem();
+}
+
+
+void Viewer::on_cleanButton_clicked()
+{
+    actionList = QList<QListWidgetItem *>();
+    ui->actionList->clear();
+}
+

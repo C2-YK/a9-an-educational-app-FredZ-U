@@ -4,6 +4,7 @@ Maze::Maze()
 {
     height = 10;
     width = 10;
+    initMap();
     fillEdgesWithWalls();
     map[getIndex(startPoint)] = start;
     coins = 0;
@@ -12,6 +13,7 @@ Maze::Maze()
 Maze::Maze(int h, int w){
     height = h;
     width = w;
+    initMap();
     fillEdgesWithWalls();
     map[getIndex(startPoint)] = start;
     coins = 0;
@@ -52,7 +54,7 @@ bool Maze::changeStartTo(int x, int y){
     if(x >= width || y >= height || x < 0 || y < 0){
         return false;
     }
-    if(getObject(startPoint.x(), startPoint.y()) == wall){
+    if(getObject(x, y) == wall){
         return false;
     }
     objectAt(startPoint.x(), startPoint.y()) = space;
@@ -104,6 +106,9 @@ bool Maze::addSpace(int x, int y){
     if(y == 0 || y == height - 1){
         return  false;
     }
+    if(objectAt(x, y) == start){
+        return false;
+    }
     //if the point is coin, remove the coin from map
     if(getObject(x, y) == coin){
         coins -= 1;
@@ -142,6 +147,12 @@ int Maze::getWidth(){
 //helper
 int Maze::getIndex(QPoint point){
     return point.x() + point.y() * width;
+}
+
+void Maze::initMap(){
+    for(int i = 0; i < height * width; i++){
+        map.append(space);
+    }
 }
 
 void Maze::fillEdgesWithWalls(){

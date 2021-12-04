@@ -26,7 +26,8 @@ void Connecter::connect_Viewer_GameModeRender(){
 
 }
 void Connecter::connect_Viewer_MazeEditor(){
-
+    QObject::connect(&viewer, &Viewer::switchToolTo, &mazeEditor, &MazeEditor::switchTool);
+    QObject::connect(&viewer, &Viewer::useToolOn, &mazeEditor, &MazeEditor::useToolOn);
 }
 
 void Connecter::connect_GameMode_GameModeRender(){
@@ -43,7 +44,7 @@ void Connecter::setMaze(){
     fileSystem.setEditorMaze(&editorMaze);
     gameMode.setMaze(&gamemodeMaze);
     mazeEditor.setMaze(&editorMaze);
-
+    viewer.setMaze(&editorMaze);
 }
 void Connecter::setBot(){
     botEditor.setBot(&bot);
