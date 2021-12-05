@@ -26,6 +26,14 @@ void Connecter::connect_Viewer_BotEditor(){
     QObject::connect(&botEditor, &BotEditor::compiled, &viewer, &Viewer::compiled);
 }
 void Connecter::connect_Viewer_FileSystem(){
+    //save and load
+    QObject::connect(&viewer, &Viewer::loadMazeToEditor, &fileSystem, &FileSystem::loadMazeToEditor);
+    QObject::connect(&viewer, &Viewer::loadMazeToGamemode, &fileSystem, &FileSystem::loadMazeToGamemode);
+    QObject::connect(&viewer, &Viewer::saveMazeToFile, &fileSystem, &FileSystem::saveMazeToFile);
+    //callback
+    QObject::connect(&fileSystem, &FileSystem::saveCallback, &viewer, &Viewer::saveCallback);
+    QObject::connect(&fileSystem, &FileSystem::loadToEditorCallback, &viewer, &Viewer::loadToEditorCallback);
+    QObject::connect(&fileSystem, &FileSystem::loadToGamemodeCallback, &viewer, &Viewer::loadToGamemodeCallback);
 
 }
 void Connecter::connect_Viewer_GameMode(){
@@ -34,7 +42,7 @@ void Connecter::connect_Viewer_GameMode(){
     QObject::connect(&gameMode, &GameMode::winEvent, &viewer, &Viewer::winEvent);
 }
 void Connecter::connect_Viewer_GameModeRender(){
-
+    QObject::connect(&gameModeRender, &GameModeRender::updateScene, &viewer, &Viewer::updateScene);
 }
 void Connecter::connect_Viewer_MazeEditor(){
     QObject::connect(&viewer, &Viewer::switchToolTo, &mazeEditor, &MazeEditor::switchTool);

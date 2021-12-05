@@ -15,12 +15,20 @@ void Bot::addAction(int action){
     actions.append(action);
 }
 
-bool Bot::removeLastAction(){
-    if(actions.size() == 0){
+bool Bot::deleteAction(int index){
+    if(actions.size() == 0)
         return false;
+    if(index >= actions.size())
+        return false;
+    for(int i = index; i < actions.size() - 1; i++){
+        actions[i] = actions[i + 1];
     }
     actions.pop_back();
     return true;
+}
+
+void Bot::clearActions(){
+    actions = QList<int>();
 }
 
 bool Bot::compile(){

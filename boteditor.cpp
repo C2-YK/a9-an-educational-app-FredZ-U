@@ -33,10 +33,10 @@ void BotEditor::addNoAction(){
     target->addAction(target->noAction);
 }
 
-void BotEditor::removeLastAction(){
-    target->removeLastAction();
+void BotEditor::deleteAction(int index){
+    target->deleteAction(index);
 }
 
 void BotEditor::clearActions(){
-    while(target->removeLastAction()){}
+    target->clearActions();
 }

@@ -28,7 +28,8 @@ public:
     void setMaze(Maze*);
 public slots:
     void saveCallback(bool success);
-    void loadCallback(bool success);
+    void loadToEditorCallback(bool success);
+    void loadToGamemodeCallback(bool success);//to do
     void updateScene(const QPixmap& scene);
     void compiled(bool success);
     void winEvent();
@@ -36,8 +37,9 @@ signals:
     void resize(int height, int width);
     void switchToolTo(int toolIndex);
     void useToolOn(QPoint position);
-    void saveSprite(QString filename);
-    void loadJason(QString filepath);
+    void saveMazeToFile(QString filename);
+    void loadMazeToEditor(QString filepath);
+    void loadMazeToGamemode(QString filepath);//todo
     void addDo();
     void addUntilHit();
     void addRight();

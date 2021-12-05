@@ -20,14 +20,14 @@ bool FileSystem::loadMazeToEditor(QString filepath)
     if(!loadFile.open(QIODevice::ReadOnly))
     {
         qWarning("Could not open the file.");
-        emit loadCallback(false);
+        emit loadToEditorCallback(false);
         return false;
     }
 
     QByteArray saveData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
     mazeReader(loadDoc.object(),*editorMaze);
-    emit loadCallback(true);
+    emit loadToEditorCallback(true);
     return true;
 }
 
@@ -36,14 +36,14 @@ bool FileSystem::loadMazeToGamemode(QString filepath){
     if(!loadFile.open(QIODevice::ReadOnly))
     {
         qWarning("Could not open the file.");
-        emit loadCallback(false);
+        emit loadToEditorCallback(false);
         return false;
     }
 
     QByteArray saveData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
     mazeReader(loadDoc.object(),*gamemodeMaze);
-    emit loadCallback(true);
+    emit loadToEditorCallback(true);
     return true;
 }
 

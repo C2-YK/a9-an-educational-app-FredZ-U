@@ -18,7 +18,6 @@ public slots:
     void addLeft();
     void addNoAction();
     void deleteAction(int index);
-    void removeLastAction();
     void clearActions();
 signals:
     void updatePreviewer();

@@ -23,9 +23,13 @@ void Viewer::saveCallback(bool success){
             changed = false;
 }
 
-void Viewer::loadCallback(bool success){
+void Viewer::loadToEditorCallback(bool success){
     if(success)
             changed = false;
+}
+
+void Viewer::loadToGamemodeCallback(bool success){
+
 }
 
 void Viewer::updateScene(const QPixmap& scene){
@@ -41,6 +45,10 @@ void Viewer::compiled(bool success){
     }else{
         ui->startButton->setDisabled(false);
     }
+}
+
+void Viewer::winEvent(){
+
 }
 
 void Viewer::on_actionNew_triggered()
