@@ -308,7 +308,7 @@
      <x>0</x>
      <y>0</y>
      <width>807</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -318,6 +318,8 @@
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
+    <addaction name="actionLoad_to_Editor"/>
+    <addaction name="actionLoad_to_Game"/>
    </widget>
    <widget class="QMenu" name="menuMaze_Size">
     <property name="title">
@@ -359,6 +361,16 @@
   <action name="actionResize">
    <property name="text">
     <string>Resize</string>
+   </property>
+  </action>
+  <action name="actionLoad_to_Editor">
+   <property name="text">
+    <string>Load to Editor</string>
+   </property>
+  </action>
+  <action name="actionLoad_to_Game">
+   <property name="text">
+    <string>Load to Game</string>
    </property>
   </action>
  </widget>
