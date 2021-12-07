@@ -115,5 +115,11 @@ private:
     const QColor spaceColor = QColor(255, 255, 255, 255);
     const QColor startColor = QColor(0, 255, 255, 255);
     const QColor playerColor = QColor(0, 0, 255, 255);
+
+    const QImage *wallImg = new QImage(":/icon/res/wall.png");
+    const QImage *coinImg = new QImage(":/icon/res/coin.png");
+    const QImage *Pic = new QImage(":/icon/res/wall.png");
+    const QImage *robotImg = new QImage(":/icon/res/wall.png");
+
 };
 #endif // VIEWER_H
