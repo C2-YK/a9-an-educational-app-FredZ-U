@@ -29,7 +29,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -57,7 +57,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Resource.qrc">
+          <iconset>
            <normaloff>:/icon/res/coin.png</normaloff>:/icon/res/coin.png</iconset>
          </property>
          <property name="iconSize">
@@ -80,7 +80,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Resource.qrc">
+          <iconset>
            <normaloff>:/icon/res/wall.png</normaloff>:/icon/res/wall.png</iconset>
          </property>
          <property name="iconSize">
@@ -103,7 +103,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Resource.qrc">
+          <iconset resource="../a8-sprite-editor-f21-FredZ-U/res.qrc">
            <normaloff>:/icon/res/eraser.png</normaloff>:/icon/res/eraser.png</iconset>
          </property>
          <property name="iconSize">
@@ -126,7 +126,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Resource.qrc">
+          <iconset>
            <normaloff>:/icon/res/start-point.png</normaloff>:/icon/res/start-point.png</iconset>
          </property>
          <property name="iconSize">
@@ -374,8 +374,6 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

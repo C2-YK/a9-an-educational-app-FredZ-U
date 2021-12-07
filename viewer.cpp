@@ -128,6 +128,7 @@ void Viewer::mousePressEvent(QMouseEvent * event){
     if(event->button() == Qt::LeftButton){//if mouse left button clicked
         QPoint screenPos = event -> pos();
         blockPos = QPoint((screenPos.x()-drawingPivot.x())/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y())/(blockSize+blockOffset));
+        qDebug()<<"x :" << blockPos.x() << "y: " << blockPos.y();
         emit useToolOn(blockPos);//get mouse position as start point
     }else if(event->button() == Qt::RightButton){
         movePivot = event->pos();
@@ -168,16 +169,20 @@ void Viewer::paintEvent(QPaintEvent *){
     for(int i = 0; i < maze->getWidth(); i++){
         for(int j = 0; j < maze->getHeight(); j++){
             QColor c;
+            QBrush brush;
             if(maze->getObject(i, j) == maze->wall){
+                 brush.setTextureImage(wallImg->scaled(blockSize, blockSize, Qt::KeepAspectRatio));
                 c = wallColor;
             }else if(maze->getObject(i, j) == maze->coin){
+                brush.setTextureImage(coinImg->scaled(blockSize, blockSize, Qt::KeepAspectRatio));
                 c = coinColor;
             }else if(maze->getObject(i, j) == maze->start){
+                brush=QBrush(startColor, Qt::SolidPattern);
                 c = startColor;
             }else if(maze->getObject(i, j) == maze->space){
                 c = spaceColor;
             }
-            painter.fillRect(i * pos + drawingPivot.x(), j * pos + drawingPivot.y(), blockSize, blockSize, c);
+            painter.fillRect(i * pos + drawingPivot.x(), j * pos + drawingPivot.y(), blockSize, blockSize, brush);
         }
     }
     ui->editorScene->setPixmap(scene);
