@@ -4,5 +4,6 @@
         <file>res/eraser.png</file>
         <file>res/start-point.png</file>
         <file>res/wall.png</file>
+        <file>res/robot.png</file>
     </qresource>
 </RCC>

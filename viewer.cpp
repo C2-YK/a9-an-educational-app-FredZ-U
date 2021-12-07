@@ -168,7 +168,6 @@ void Viewer::paintEvent(QPaintEvent *){
     for(int i = 0; i < maze->getWidth(); i++){
         for(int j = 0; j < maze->getHeight(); j++){
             QColor c;
-            QBrush brush;
             if(maze->getObject(i, j) == maze->wall){
                 c = wallColor;
             }else if(maze->getObject(i, j) == maze->coin){
