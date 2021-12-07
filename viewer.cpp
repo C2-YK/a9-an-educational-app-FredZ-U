@@ -1,5 +1,6 @@
 #include "viewer.h"
 #include "ui_viewer.h"
+#include <QTabWidget>
 
 Viewer::Viewer(QWidget *parent)
     : QMainWindow(parent)
@@ -125,39 +126,60 @@ void Viewer::on_startButton_clicked()
 }
 
 void Viewer::mousePressEvent(QMouseEvent * event){
-    if(event->button() == Qt::LeftButton){//if mouse left button clicked
-        QPoint screenPos = event -> pos();
-        blockPos = QPoint((screenPos.x()-drawingPivot.x())/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y())/(blockSize+blockOffset));
-        qDebug()<<"x :" << blockPos.x() << "y: " << blockPos.y();
-        emit useToolOn(blockPos);//get mouse position as start point
-    }else if(event->button() == Qt::RightButton){
-        movePivot = event->pos();
+    // in the maze editor tab
+    if(currentTabIndex == 0)
+    {
+        if(event->button() == Qt::LeftButton){//if mouse left button clicked
+            QPoint screenPos = event -> pos();
+            blockPos = QPoint((screenPos.x()-drawingPivot.x()-15)/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-40)/(blockSize+blockOffset));
+            emit useToolOn(blockPos);//get mouse position as start point
+        }else if(event->button() == Qt::RightButton){
+            movePivot = event->pos();
+        }
+    }
+    // in the game windows tab
+    if(currentTabIndex == 1)
+    {
+
     }
 }
 
 void Viewer::mouseMoveEvent(QMouseEvent * event){
-    if(event->buttons()&Qt::LeftButton){//if mouse left button clicked and move at same time
-        QPoint screenPos = event -> pos();
-        if(blockPos != QPoint((screenPos.x()-drawingPivot.x())/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y())/(blockSize+blockOffset))){
-            blockPos = QPoint((screenPos.x()-drawingPivot.x())/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y())/(blockSize+blockOffset));
-            emit useToolOn(blockPos);
+    // in the maze editor tab
+    if(currentTabIndex == 0)
+    {
+        if(event->buttons()&Qt::LeftButton){//if mouse left button clicked and move at same time
+            QPoint screenPos = event -> pos();
+            if(blockPos != QPoint((screenPos.x()-drawingPivot.x()-15)/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-40)/(blockSize+blockOffset))){
+                blockPos = QPoint((screenPos.x()-drawingPivot.x()-15)/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-40)/(blockSize+blockOffset));
+                emit useToolOn(blockPos);
+            }
+        }else{
+            drawingPivot += event->pos() - movePivot;
+            movePivot = event->pos();
+            repaint();
         }
-    }else{
-        drawingPivot += event->pos() - movePivot;
-        movePivot = event->pos();
-        repaint();
+    }
+    // in the game windows tab
+    if(currentTabIndex == 1)
+    {
+
     }
 }
 
 void Viewer::wheelEvent(QWheelEvent * event){
-    //scale function
-    blockSize += event->angleDelta().y()/120;
-    if(blockSize<15){
-        blockOffset = 0;
-    }else{
-        blockOffset = 1;
+    // in the maze editor tab
+    if(currentTabIndex == 0)
+    {
+        //scale function
+        blockSize += event->angleDelta().y()/120;
+        if(blockSize<15){
+            blockOffset = 0;
+        }else{
+            blockOffset = 1;
+        }
+        repaint();
     }
-    repaint();
 }
 
 
@@ -214,7 +236,7 @@ void Viewer::on_startPointButton_clicked()
 
 void Viewer::on_tabWidget_tabBarClicked(int index)
 {
-
+    currentTabIndex = index;
 }
 
 

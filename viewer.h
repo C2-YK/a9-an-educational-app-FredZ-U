@@ -109,6 +109,9 @@ private:
     int tool_wall = 1;
     int tool_coin = 2;
     int tool_start = 3;
+    // in the maze editor tab, index = 0;
+    // in the game windows tab, index = 1.
+    int currentTabIndex = 0;
 
     const QColor wallColor = QColor(0, 0, 0, 255);
     const QColor coinColor = QColor(255, 255, 0, 255);
