@@ -124,5 +124,10 @@ private:
     const QImage *Pic = new QImage(":/icon/res/wall.png");
     const QImage *robotImg = new QImage(":/icon/res/wall.png");
 
+    const QPixmap *wallPix = new QPixmap(":/icon/res/wall.png");
+    const QPixmap *coinPix = new QPixmap(":/icon/res/coin.png");
+    const QPixmap *Pix = new QPixmap(":/icon/res/wall.png");
+    const QPixmap *robotPix = new QPixmap(":/icon/res/robot.png");
+
 };
 #endif // VIEWER_H

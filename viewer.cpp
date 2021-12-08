@@ -188,23 +188,26 @@ void Viewer::paintEvent(QPaintEvent *){
     scene.fill(QColor("transparent"));
     QPainter painter(&scene);
     int pos = blockSize+blockOffset;
+    QPixmap pixmap;
     for(int i = 0; i < maze->getWidth(); i++){
         for(int j = 0; j < maze->getHeight(); j++){
-            QColor c;
-            QBrush brush;
+
+
             if(maze->getObject(i, j) == maze->wall){
-                 brush.setTextureImage(wallImg->scaled(blockSize, blockSize, Qt::KeepAspectRatio));
-                c = wallColor;
+                pixmap = *wallPix;
+
             }else if(maze->getObject(i, j) == maze->coin){
-                brush.setTextureImage(coinImg->scaled(blockSize, blockSize, Qt::KeepAspectRatio));
-                c = coinColor;
+                pixmap = *coinPix;
+
             }else if(maze->getObject(i, j) == maze->start){
-                brush=QBrush(startColor, Qt::SolidPattern);
-                c = startColor;
+                pixmap = *robotPix;
+
+
             }else if(maze->getObject(i, j) == maze->space){
-                c = spaceColor;
+                pixmap.fill(spaceColor);
+
             }
-            painter.fillRect(i * pos + drawingPivot.x(), j * pos + drawingPivot.y(), blockSize, blockSize, brush);
+            painter.drawPixmap(i * pos + drawingPivot.x(), j * pos + drawingPivot.y(), blockSize, blockSize, pixmap);
         }
     }
     ui->editorScene->setPixmap(scene);
