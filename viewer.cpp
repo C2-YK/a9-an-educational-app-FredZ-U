@@ -106,7 +106,7 @@ void Viewer::on_actionSave_triggered()
 
 void Viewer::on_actionAbout_triggered()
 {
-    QMessageBox::information(this, "Instruction", "Instruction");
+    QMessageBox::information(this, "Instruction", "This game has two modes.\n1.Sprite Editor is used for the users to draw the custom maze and save the maze in their machine.\n2.Game mode is used for the users to load the maze and add a list of commands to tell the robot to move following commands. If the robot collects all the gold, it will win the game. Among them, the most difficult to understand is do and until. When the player chooses do, it means the robot starts to operate, but when chooses until, the robot stops operating, so do and until should be the same number, otherwise an error will be reported.");
 }
 
 
