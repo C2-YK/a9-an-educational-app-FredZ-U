@@ -38,7 +38,7 @@ private:
     bool stoped;
     int updateCount;
     int score;
-    b2World world;
+    b2World* world;
     QList<b2Vec2> coinBodies;
     QList<b2Body*> wallBodies;
     b2Body* player;

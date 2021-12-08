@@ -1,7 +1,8 @@
 #include "gamemode.h"
 
-GameMode::GameMode() : world(b2Vec2(0, 0))
+GameMode::GameMode()
 {
+    world = new b2World(b2Vec2(0, 0));
 }
 
 void GameMode::start(){
@@ -27,8 +28,9 @@ void GameMode::initGame(){
     int w = masterMaze->getWidth();
     int h = masterMaze->getHeight();
     win = false;
+    delete world;
     //create world
-    world = b2World(b2Vec2(0, 0));
+    world = new b2World(b2Vec2(0, 0));
     QList<b2Vec2> pos;
     for(int x = 0; x < w; x++){
         for(int y = 0; y < h; y++){
@@ -52,7 +54,7 @@ void GameMode::initGame(){
 void GameMode::createWall(float x, float y){
     b2BodyDef wallDef;
     wallDef.position.Set(x, y);
-    b2Body* wallPos = world.CreateBody(&wallDef);
+    b2Body* wallPos = world->CreateBody(&wallDef);
     b2PolygonShape box;
     box.SetAsBox(wallSize, wallSize);
     wallPos->CreateFixture(&box, 0.0f);
@@ -62,7 +64,7 @@ void GameMode::createPlayer(float x, float y){
     b2BodyDef botDef;
     botDef.type = b2_dynamicBody;
     botDef.position.Set(x, y);
-    player = world.CreateBody(&botDef);
+    player = world->CreateBody(&botDef);
     b2PolygonShape box;
     box.SetAsBox(playerSize, playerSize);
     b2FixtureDef fixtureDef;
@@ -132,7 +134,7 @@ void GameMode::updateWorld(){
         }
         updateCount = 0;
     }
-    world.Step(1.0/60.0, 6, 2);
+    world->Step(1.0/60.0, 6, 2);
     trigger();
     emit updatePlayerPosition(player->GetPosition());
 }
