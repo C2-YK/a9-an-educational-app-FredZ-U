@@ -8,6 +8,5 @@
     </qresource>
     <qresource prefix="/Document">
         <file>SumbitDocument/A9 video.mp4</file>
-        <file>SumbitDocument/Document_ A9c-Sprint2.pdf</file>
     </qresource>
 </RCC>
