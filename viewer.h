@@ -129,5 +129,6 @@ private:
     const QPixmap *Pix = new QPixmap(":/icon/res/wall.png");
     const QPixmap *robotPix = new QPixmap(":/icon/res/robot.png");
 
+    int menubarHeight;
 };
 #endif // VIEWER_H

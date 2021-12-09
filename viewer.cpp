@@ -7,7 +7,8 @@ Viewer::Viewer(QWidget *parent)
     , ui(new Ui::Viewer)
 {
     ui->setupUi(this);
-
+    menubarHeight = ui->menubar->height();
+    qDebug()<<menubarHeight<<""<<ui->menubar->height();
 }
 
 Viewer::~Viewer()
@@ -131,7 +132,7 @@ void Viewer::mousePressEvent(QMouseEvent * event){
     {
         if(event->button() == Qt::LeftButton){//if mouse left button clicked
             QPoint screenPos = event -> pos();
-            blockPos = QPoint((screenPos.x()-drawingPivot.x()-15)/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-40)/(blockSize+blockOffset));
+            blockPos = QPoint((screenPos.x()-drawingPivot.x())/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-menubarHeight)/(blockSize+blockOffset));
             emit useToolOn(blockPos);//get mouse position as start point
         }else if(event->button() == Qt::RightButton){
             movePivot = event->pos();
@@ -150,8 +151,9 @@ void Viewer::mouseMoveEvent(QMouseEvent * event){
     {
         if(event->buttons()&Qt::LeftButton){//if mouse left button clicked and move at same time
             QPoint screenPos = event -> pos();
-            if(blockPos != QPoint((screenPos.x()-drawingPivot.x()-15)/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-40)/(blockSize+blockOffset))){
-                blockPos = QPoint((screenPos.x()-drawingPivot.x()-15)/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-40)/(blockSize+blockOffset));
+            qDebug()<<"x:"<<event->pos().x()<<"y:"<<event->pos().y();
+            if(blockPos != QPoint((screenPos.x()-drawingPivot.x())/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-menubarHeight)/(blockSize+blockOffset))){
+                blockPos = QPoint((screenPos.x()-drawingPivot.x())/(blockSize+blockOffset), (screenPos.y()-drawingPivot.y()-menubarHeight)/(blockSize+blockOffset));
                 emit useToolOn(blockPos);
             }
         }else{
