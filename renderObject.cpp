@@ -20,8 +20,9 @@ void RenderObject::setLocation(QPoint location){
     this->location = location;
 }
 
-void RenderObject::setTexture(QImage * t){
+void RenderObject::setTexture(QPixmap * t){
     texture = t;
+
 }
 
 QColor RenderObject::getColor(){
@@ -40,6 +41,6 @@ void RenderObject::setSize(int size){
     this->size = size;
 }
 
-const QImage& RenderObject::getTexture(){
+const QPixmap& RenderObject::getTexture(){
     return *texture;
 }

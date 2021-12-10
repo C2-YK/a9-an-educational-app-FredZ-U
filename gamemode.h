@@ -47,7 +47,7 @@ private:
     //in other word, it is the distance form center to edges
     //so unit distance between two walls should be 2 time wall size
     float unitDistance = 2 * wallSize;
-    float playerSize = 5;
+    float playerSize = 15;
     float triggerSensitive = 0.1;
     float playerSpeed = 100;
     int timerStep = 50;

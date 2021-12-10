@@ -123,14 +123,13 @@ private:
     const QColor startColor = QColor(0, 255, 255, 255);
     const QColor playerColor = QColor(0, 0, 255, 255);
 
-    const QImage *wallImg = new QImage(":/icon/res/wall.png");
+     QImage *wallImg = new QImage(":/icon/res/wall.png");
     const QImage *coinImg = new QImage(":/icon/res/coin.png");
     const QImage *Pic = new QImage(":/icon/res/wall.png");
     const QImage *robotImg = new QImage(":/icon/res/wall.png");
 
     const QPixmap *wallPix = new QPixmap(":/icon/res/wall.png");
     const QPixmap *coinPix = new QPixmap(":/icon/res/coin.png");
-    const QPixmap *Pix = new QPixmap(":/icon/res/wall.png");
     const QPixmap *robotPix = new QPixmap(":/icon/res/robot.png");
 
     int menubarHeight;

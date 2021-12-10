@@ -17,13 +17,13 @@ public:
     void setColor(QColor color);
     int getSize();
     void setSize(int size);
-    void setTexture(QImage*);
-    const QImage& getTexture();
+    void setTexture(QPixmap*);
+    const QPixmap& getTexture();
 private:
     QPoint location;
     QColor color;
     int size;
-    QImage* texture;
+    QPixmap* texture;
 };
 
 #endif // RENDEROBJECT_H

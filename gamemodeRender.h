@@ -33,6 +33,9 @@ private:
     const QColor spaceColor = QColor(255, 255, 255, 255);
     const QColor startColor = QColor(0, 255, 255, 255);
     const QColor playerColor = QColor(0, 0, 255, 255);
+    QPixmap *wallPix = new QPixmap(":/icon/res/wall.png");
+    QPixmap *coinPix = new QPixmap(":/icon/res/coin.png");
+    QPixmap *robotPix = new QPixmap(":/icon/res/robot.png");
     QList<RenderObject> maze;
     RenderObject player;
     QPixmap scene;
