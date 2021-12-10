@@ -20,6 +20,10 @@ void RenderObject::setLocation(QPoint location){
     this->location = location;
 }
 
+void RenderObject::setTexture(QImage * t){
+    texture = t;
+}
+
 QColor RenderObject::getColor(){
     return color;
 }

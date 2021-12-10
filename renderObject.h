@@ -17,6 +17,7 @@ public:
     void setColor(QColor color);
     int getSize();
     void setSize(int size);
+    void setTexture(QImage*);
     const QImage& getTexture();
 private:
     QPoint location;
