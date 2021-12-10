@@ -1,8 +1,8 @@
 #include "bot.h"
 #include <box2d/box2d.h>
+#include <QDebug>
 Bot::Bot()
 {
-    actions.append(noAction);
     reset();
     directions.append(dr_top);
     directions.append(dr_right);
@@ -48,6 +48,7 @@ bool Bot::compile(){
 
 //methods for game mode
 void Bot::hit(){
+    qDebug()<<"set hit";
     hited = true;
 }
 
@@ -65,6 +66,7 @@ int Bot::act(){
     //if action is Do or UntilHit
     //read next until the action is not Do or UntilHit
     while((action == Do || action == UntilHit) && !stop){
+        qDebug()<<actionPointer<<" / "<<actions.size();
         if(action == Do){
             hited = false;
             loopHeads.append(actionPointer + 1);//memorize the index after Do
@@ -72,12 +74,15 @@ int Bot::act(){
             action = actions[actionPointer];
         }
         else if(action == UntilHit){
+            qDebug()<<"action == UntilHit";
             if(hited){
+                qDebug()<<"hited";
                 hited = false;
                 loopHeads.pop_back();//clean the index on stack
                 actionPointer++;
                 action = actions[actionPointer];
             }else{
+                qDebug()<<"actionPointer =" << loopHeads;
                 actionPointer = loopHeads[loopHeads.size() - 1];//back to the index on stack
             }
         }
@@ -86,6 +91,7 @@ int Bot::act(){
         //if the bot loop forever, stop the bot
         if(loopCount > maxLoopCount){
             stop = true;
+            qDebug()<<"bot has stop";
             return noAction;
         }
     }
@@ -103,14 +109,13 @@ int Bot::act(){
             direction = directions.size() - 1;
         }
     }
-
     return action;
 }
 
 void Bot::reset(){
     actionPointer = 0;
     hited = false;
-    stop = compile();
+    stop = !compile();
     direction = 0;
 }
 

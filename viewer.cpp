@@ -27,7 +27,7 @@ void Viewer::saveCallback(bool success){
 
 void Viewer::loadToEditorCallback(bool success){
     if(success)
-            changed = false;
+        changed = false;
 }
 
 void Viewer::loadToGamemodeCallback(bool success){
@@ -99,11 +99,34 @@ void Viewer::on_actionSave_triggered()
                     "C://",
                     "Maze Project (*.mep);;"
                     );
-        changed = false;
+    changed = false;
         //Filesystem
         //emit
+    emit saveMazeToFile(fileDir);
 }
 
+void Viewer::on_actionLoad_to_Editor_triggered(){
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Open File"),
+                "C://",
+                "Maze Project (*.mep);;"
+
+                );
+    changed = false;
+    emit loadMazeToEditor(filename);
+}
+
+void Viewer::on_actionLoad_to_Game_triggered(){
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Open File"),
+                "C://",
+                "Maze Project (*.mep);;"
+
+                );
+    emit loadMazeToGamemode(filename);
+}
 
 void Viewer::on_actionAbout_triggered()
 {

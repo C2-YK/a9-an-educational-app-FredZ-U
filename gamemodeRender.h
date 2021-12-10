@@ -36,7 +36,7 @@ private:
     QList<RenderObject> maze;
     RenderObject player;
     QPixmap scene;
-    int scale = 20;
+    int scale = 1;
     int FPS = 30;
     int sceneWidth;
     int sceneHeight;

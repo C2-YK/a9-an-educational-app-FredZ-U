@@ -1,4 +1,5 @@
 #include "gamemodeRender.h"
+#include <QDebug>
 
 GameModeRender::GameModeRender()
 {
@@ -12,8 +13,8 @@ void GameModeRender::setMazeData(Maze m, QList<b2Vec2> p, float unitLength){
     sceneWidth = m.getWidth() * unitLength;
     QList<int> map = m.getMap();
     for(int i = 0; i < map.size(); i++){
-        int x = (int) p[i].x * scale;
-        int y = (int) p[i].y * scale;
+        int x = (int) (p[i].x - unitLength/2) * scale;
+        int y = (int) (p[i].y - unitLength/2) * scale;
         QPoint location = QPoint(x, y);
         if(map[i] == m.wall){
             maze.append(RenderObject(location, wallColor, (int)unitLength));
@@ -29,8 +30,8 @@ void GameModeRender::setMazeData(Maze m, QList<b2Vec2> p, float unitLength){
 }
 
 void GameModeRender::setPlayerPosition(b2Vec2 pp){
-    int x = (int) pp.x * scale;
-    int y = (int) pp.y * scale;
+    int x = (int) (pp.x - player.getSize()/2) * scale;
+    int y = (int) (pp.y - player.getSize()/2) * scale;
     player.setLocation(QPoint(x, y));
 }
 

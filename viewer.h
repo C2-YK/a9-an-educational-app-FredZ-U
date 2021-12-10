@@ -59,6 +59,10 @@ private slots:
 
     void on_actionSave_triggered();
 
+    void on_actionLoad_to_Editor_triggered();
+
+    void on_actionLoad_to_Game_triggered();
+
     void on_actionAbout_triggered();
 
     void on_actionResize_triggered();

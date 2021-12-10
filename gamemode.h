@@ -49,7 +49,7 @@ private:
     float unitDistance = 2 * wallSize;
     float playerSize = 5;
     float triggerSensitive = 0.1;
-    float playerSpeed = 10;
+    float playerSpeed = 100;
     int timerStep = 50;
     int botStep = 1000;
     void initGame();

@@ -28,9 +28,9 @@ void GameMode::initGame(){
     int w = masterMaze->getWidth();
     int h = masterMaze->getHeight();
     win = false;
-    delete world;
+    //delete world;
     //create world
-    world = new b2World(b2Vec2(0, 0));
+    //world = new b2World(b2Vec2(0, 0));
     QList<b2Vec2> pos;
     for(int x = 0; x < w; x++){
         for(int y = 0; y < h; y++){
@@ -43,10 +43,11 @@ void GameMode::initGame(){
         }
     }
     maze = *masterMaze; //make copy of master maze
+    maze.addCoin(2, 2);
     updateCount = 0;
     stoped = false;
     score = 0;
-
+    bot->reset();
     emit setMazeData(maze, pos, unitDistance);
     emit setPlayerSize(playerSize);
 }
@@ -97,12 +98,12 @@ void GameMode::trigger(){
     QPoint tl = getMazeLocation(x - playerSize + triggerDis.x(), y + playerSize + triggerDis.y());
     QPoint br = getMazeLocation(x + playerSize + triggerDis.x(), y - playerSize + triggerDis.y());
     QPoint bl = getMazeLocation(x - playerSize + triggerDis.x(), y - playerSize + triggerDis.y());
-    if(maze.getObject(tr.x(), tr.y()) == maze.wall
+    /*if(maze.getObject(tr.x(), tr.y()) == maze.wall
             || maze.getObject(tl.x(), tl.y()) == maze.wall
             || maze.getObject(bl.x(), bl.y()) == maze.wall
             || maze.getObject(br.x(), br.y()) == maze.wall ){
         bot->hit();
-    }
+    }*/
 }
 
 void GameMode::checkWin(){
@@ -117,11 +118,13 @@ void GameMode::updateWorld(){
     checkWin();
     if(win){
         timer.stop();
+        qDebug()<<"win";
         emit winEvent();
     }
     updateCount++;
     if(updateCount >= botStep/timerStep){
         int action = bot->act();
+        qDebug()<<action;
         //reset player movement
         player->SetLinearVelocity(b2Vec2(0, 0));
         if(action == bot->Forward){
