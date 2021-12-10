@@ -140,14 +140,17 @@ void Viewer::on_actionResize_triggered()
 }
 
 
-void Viewer::on_startButton_clicked()
-{
-    if(gameStarted){
-        emit gameStop();
-    }else{
-        emit gameStart();
-    }
-}
+//void Viewer::on_startButton_clicked()
+//{
+//    ui->startButton->setText("Stop");
+//    ui->startButton->
+//    if(gameStarted){
+
+//        //emit gameStop();
+//    }else{
+//        //emit gameStart();
+//    }
+//}
 
 void Viewer::mousePressEvent(QMouseEvent * event){
     // in the maze editor tab
@@ -331,5 +334,24 @@ void Viewer::on_cleanButton_clicked()
     actionList = QList<QListWidgetItem *>();
     ui->actionList->clear();
     emit clearActions();
+}
+
+
+void Viewer::on_startButton_clicked(bool gameStarted)
+{
+    if(checked && gameStarted == false){
+        ui->startButton->setText("Stop");
+        ui->startButton->setStyleSheet("background-color :red");
+        gameStarted = true;
+        checked = false;
+        emit gameStart();
+    }
+    else{
+        ui->startButton->setText("Start");
+         ui->startButton->setStyleSheet("background-color :green");
+        checked = true;
+        gameStarted = false;
+        emit gameStop();
+    }
 }
 

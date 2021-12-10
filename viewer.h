@@ -67,8 +67,6 @@ private slots:
 
     void on_actionResize_triggered();
 
-    void on_startButton_clicked();
-
     void on_coinButton_clicked();
 
     void on_wallButton_clicked();
@@ -93,11 +91,13 @@ private slots:
 
     void on_cleanButton_clicked();
 
+    void on_startButton_clicked(bool checked);
+
 private:
     Ui::Viewer *ui;
     Maze* maze;
     bool changed;
-    bool gameStarted = false;
+    bool checked = true;
     QPoint drawingPivot = QPoint(160,80);
     QPoint movePivot;
     QPoint blockPos;
