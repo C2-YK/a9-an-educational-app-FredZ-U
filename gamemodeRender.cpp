@@ -50,6 +50,7 @@ void GameModeRender::setPlayerSize(float size){
 void GameModeRender::setToSpace(int index){
     maze[index].setColor(spaceColor);
     maze[index].hasTexture = false;
+    render();
 }
 
 void GameModeRender::startRender(){

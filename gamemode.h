@@ -53,8 +53,8 @@ private:
     float playerSize = wallSize/2;
     QList<float> offsets = {0, 15};//offset for different between render and game
     float playerSpeed = 58;
-    int timerStep = 50;
-    int botStep = 1000;
+    int timerStep = 25;
+    int botStep = timerStep * 20;
     void createWall(float x, float y);
     void createPlayer(float x, float y);
     QPoint getMazeLocation(float x, float y);
