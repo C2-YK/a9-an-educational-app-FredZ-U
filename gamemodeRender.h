@@ -20,6 +20,7 @@ public:
 public slots:
     void startRender();
     void stopRender();
+    void renderLoop();
     void render();
     void setMazeData(Maze, QList<b2Vec2>, float);
     void setPlayerPosition(b2Vec2 pp);

@@ -19,6 +19,7 @@ public slots:
     void setBot(Bot*);
     void setMaze(Maze*);
     void stop();
+    void initGame();
 signals:
     void updatePlayerPosition(const b2Vec2& playerPos);
     void playRotateAnimation(int dir);// >0 clockwise <0 counter
@@ -47,12 +48,11 @@ private:
     //in other word, it is the distance form center to edges
     //so unit distance between two walls should be 2 time wall size
     float unitDistance = 2 * wallSize;
-    float playerSize = 15;
+    float playerSize = wallSize;
     float triggerSensitive = 0.1;
     float playerSpeed = 100;
     int timerStep = 50;
     int botStep = 1000;
-    void initGame();
     void createWall(float x, float y);
     void createPlayer(float x, float y);
     QPoint getMazeLocation(float x, float y);

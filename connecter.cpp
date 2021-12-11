@@ -11,6 +11,7 @@ Connecter::Connecter()
     connect_Viewer_MazeEditor();
 
     connect_GameMode_GameModeRender();
+    gameMode.initGame();
 }
 
 void Connecter::connect_Viewer_BotEditor(){

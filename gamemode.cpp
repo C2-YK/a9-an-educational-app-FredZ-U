@@ -3,12 +3,12 @@
 GameMode::GameMode()
 {
     world = new b2World(b2Vec2(0, 0));
+    connect(&timer, &QTimer::timeout, this, &GameMode::updateWorld);
 }
 
 void GameMode::start(){
     initGame();
     emit startEvent();
-    connect(&timer, &QTimer::timeout, this, &GameMode::updateWorld);
     timer.start(timerStep);
 }
 
@@ -28,9 +28,9 @@ void GameMode::initGame(){
     int w = masterMaze->getWidth();
     int h = masterMaze->getHeight();
     win = false;
-    //delete world;
+    delete world;
     //create world
-    //world = new b2World(b2Vec2(0, 0));
+    world = new b2World(b2Vec2(0, 0));
     QList<b2Vec2> pos;
     for(int x = 0; x < w; x++){
         for(int y = 0; y < h; y++){
@@ -44,12 +44,14 @@ void GameMode::initGame(){
     }
     maze = *masterMaze; //make copy of master maze
     maze.addCoin(2, 2);
+    maze.addCoin(7, 7);
     updateCount = 0;
     stoped = false;
     score = 0;
     bot->reset();
-    emit setMazeData(maze, pos, unitDistance);
     emit setPlayerSize(playerSize);
+    emit updatePlayerPosition(player->GetPosition());
+    emit setMazeData(maze, pos, unitDistance);
 }
 
 void GameMode::createWall(float x, float y){
