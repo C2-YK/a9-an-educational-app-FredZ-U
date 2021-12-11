@@ -37,6 +37,8 @@ private:
     void connect_BotEditor_BotEditorRender();
     void connect_GameMode_GameModeRender();
 
+    void connect_FileSystem_GameMode();
+
     void setMaze();
     void setBot();
 };

@@ -1,4 +1,5 @@
 #include "filesystem.h"
+#include <QDebug>
 
 FileSystem::FileSystem()
 {
@@ -43,6 +44,8 @@ bool FileSystem::loadMazeToGamemode(QString filepath){
     QByteArray saveData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
     mazeReader(loadDoc.object(),*gamemodeMaze);
+    qDebug()<<"load success";
+    emit refreshGamemode();
     emit loadToEditorCallback(true);
     return true;
 }

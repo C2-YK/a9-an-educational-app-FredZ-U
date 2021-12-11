@@ -23,7 +23,8 @@ public slots:
     bool saveMazeToFile(QString);
 signals:
     void loadToEditorCallback(bool);
-    void loadToGamemodeCallback(bool success);//to do
+    void loadToGamemodeCallback(bool success);
+    void refreshGamemode();
     void saveCallback(bool);
 private:
     Maze *editorMaze;

@@ -40,6 +40,8 @@ private:
     int updateCount;
     int score;
     b2World* world;
+    b2Vec2 prePlayerPos;
+    int prePlayerAction;
     QList<b2Vec2> coinBodies;
     QList<b2Body*> wallBodies;
     b2Body* player;
@@ -48,9 +50,9 @@ private:
     //in other word, it is the distance form center to edges
     //so unit distance between two walls should be 2 time wall size
     float unitDistance = 2 * wallSize;
-    float playerSize = wallSize;
-    float triggerSensitive = 0.1;
-    float playerSpeed = 100;
+    float playerSize = wallSize/2;
+    QList<float> offsets = {0, 15};//offset for different between render and game
+    float playerSpeed = 58;
     int timerStep = 50;
     int botStep = 1000;
     void createWall(float x, float y);

@@ -48,7 +48,6 @@ bool Bot::compile(){
 
 //methods for game mode
 void Bot::hit(){
-    qDebug()<<"set hit";
     hited = true;
 }
 
@@ -66,7 +65,6 @@ int Bot::act(){
     //if action is Do or UntilHit
     //read next until the action is not Do or UntilHit
     while((action == Do || action == UntilHit) && !stop){
-        qDebug()<<actionPointer<<" / "<<actions.size();
         if(action == Do){
             hited = false;
             loopHeads.append(actionPointer + 1);//memorize the index after Do
@@ -74,16 +72,20 @@ int Bot::act(){
             action = actions[actionPointer];
         }
         else if(action == UntilHit){
-            qDebug()<<"action == UntilHit";
             if(hited){
-                qDebug()<<"hited";
                 hited = false;
                 loopHeads.pop_back();//clean the index on stack
                 actionPointer++;
+                if(actionPointer == actions.size()){
+                    stop = true;
+                }
+                if(stop){
+                    return noAction;
+                }
                 action = actions[actionPointer];
             }else{
-                qDebug()<<"actionPointer =" << loopHeads;
                 actionPointer = loopHeads[loopHeads.size() - 1];//back to the index on stack
+                action = actions[actionPointer];
             }
         }
 
@@ -98,12 +100,12 @@ int Bot::act(){
     actionPointer++;
 
     //change direction
-    if(action == Right){
+    if(action == Left){
         direction++;
         if(direction == directions.size()){
             direction = 0;
         }
-    }else if(action == Left){
+    }else if(action == Right){
         direction--;
         if(direction < 0){
             direction = directions.size() - 1;

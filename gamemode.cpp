@@ -25,6 +25,7 @@ void GameMode::stop(){
 }
 
 void GameMode::initGame(){
+    qDebug()<<"init game";
     int w = masterMaze->getWidth();
     int h = masterMaze->getHeight();
     win = false;
@@ -32,8 +33,8 @@ void GameMode::initGame(){
     //create world
     world = new b2World(b2Vec2(0, 0));
     QList<b2Vec2> pos;
-    for(int x = 0; x < w; x++){
-        for(int y = 0; y < h; y++){
+    for(int y = 0; y < h; y++){
+        for(int x = 0; x < w; x++){
             if(masterMaze->getObject(x, y) == masterMaze->wall){
                 createWall(x * unitDistance, y * unitDistance);
             }else if(masterMaze->getObject(x, y) == masterMaze->start){
@@ -43,8 +44,6 @@ void GameMode::initGame(){
         }
     }
     maze = *masterMaze; //make copy of master maze
-    maze.addCoin(2, 2);
-    maze.addCoin(7, 7);
     updateCount = 0;
     stoped = false;
     score = 0;
@@ -87,25 +86,14 @@ void GameMode::trigger(){
     float x = player->GetPosition().x;
     float y = player->GetPosition().y;
     //collect this locations coin if have any
-    QPoint playerLoc = getMazeLocation(x, y);
-    if(maze.collectCoin(playerLoc.x(), playerLoc.y())){
-        score++;
-        emit setToSpace(playerLoc.x() + maze.getWidth() * playerLoc.y());
-        emit updateCoins(score);
+    for(int i = 0; i < offsets.size(); i++){
+        QPoint playerLoc = getMazeLocation(x + offsets[i], y+offsets[i]);
+        if(maze.collectCoin(playerLoc.x(), playerLoc.y())){
+            score++;
+            emit setToSpace(playerLoc.x() + maze.getWidth() * playerLoc.y());
+            emit updateCoins(score);
+        }
     }
-    //collide check with moving direction
-    QPoint dir = bot->getDirection();
-    QPoint triggerDis = QPoint(dir.x()*triggerSensitive, dir.y()*triggerSensitive);
-    QPoint tr = getMazeLocation(x + playerSize + triggerDis.x(), y + playerSize + triggerDis.y());
-    QPoint tl = getMazeLocation(x - playerSize + triggerDis.x(), y + playerSize + triggerDis.y());
-    QPoint br = getMazeLocation(x + playerSize + triggerDis.x(), y - playerSize + triggerDis.y());
-    QPoint bl = getMazeLocation(x - playerSize + triggerDis.x(), y - playerSize + triggerDis.y());
-    /*if(maze.getObject(tr.x(), tr.y()) == maze.wall
-            || maze.getObject(tl.x(), tl.y()) == maze.wall
-            || maze.getObject(bl.x(), bl.y()) == maze.wall
-            || maze.getObject(br.x(), br.y()) == maze.wall ){
-        bot->hit();
-    }*/
 }
 
 void GameMode::checkWin(){
@@ -138,8 +126,14 @@ void GameMode::updateWorld(){
             emit playRotateAnimation(-1);
         }
         updateCount = 0;
+        prePlayerAction = action;
     }
     world->Step(1.0/60.0, 6, 2);
     trigger();
+    if(player->GetPosition() == prePlayerPos && prePlayerAction == bot->Forward){
+        qDebug()<<"hit";
+        bot->hit();
+    }
+    prePlayerPos = player->GetPosition();
     emit updatePlayerPosition(player->GetPosition());
 }

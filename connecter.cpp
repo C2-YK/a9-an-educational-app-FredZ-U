@@ -10,6 +10,7 @@ Connecter::Connecter()
     connect_Viewer_GameModeRender();
     connect_Viewer_MazeEditor();
 
+    connect_FileSystem_GameMode();
     connect_GameMode_GameModeRender();
     gameMode.initGame();
 }
@@ -60,8 +61,13 @@ void Connecter::connect_GameMode_GameModeRender(){
     QObject::connect(&gameMode, &GameMode::startEvent, &gameModeRender, &GameModeRender::startRender);
 }
 
+void Connecter::connect_FileSystem_GameMode(){
+    QObject::connect(&fileSystem, &FileSystem::refreshGamemode, &gameMode, &GameMode::initGame);
+}
+
 void Connecter::setMaze(){
     fileSystem.setEditorMaze(&editorMaze);
+    fileSystem.setGamemodeMaze(&gamemodeMaze);
     gameMode.setMaze(&gamemodeMaze);
     mazeEditor.setMaze(&editorMaze);
     viewer.setMaze(&editorMaze);
