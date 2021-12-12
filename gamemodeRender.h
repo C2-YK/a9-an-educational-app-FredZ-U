@@ -37,6 +37,7 @@ private:
     QPixmap *wallPix = new QPixmap(":/icon/res/wall.png");
     QPixmap *coinPix = new QPixmap(":/icon/res/coin.png");
     QPixmap *robotPix = new QPixmap(":/icon/res/robot.png");
+    QPixmap *blockPix = new QPixmap(":/icon/res/block.png");
     QList<RenderObject> maze;
     RenderObject player;
     QPixmap scene;

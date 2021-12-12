@@ -30,6 +30,7 @@ signals:
     void winEvent();
     void stopEvent();
     void startEvent();
+    void winDisplay(bool show);
 private:
     Bot* bot;
     Maze* masterMaze;

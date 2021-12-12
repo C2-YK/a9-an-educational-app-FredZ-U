@@ -110,6 +110,7 @@ void GameMode::updateWorld(){
         timer.stop();
         qDebug()<<"win";
         emit winEvent();
+        emit winDisplay(true);
     }
     updateCount++;
     if(updateCount >= botStep/timerStep){

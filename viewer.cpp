@@ -8,7 +8,8 @@ Viewer::Viewer(QWidget *parent)
 {
     ui->setupUi(this);
     menubarHeight = ui->menubar->height();
-
+    ui->winLabel->setPixmap(QPixmap(":/icon/res/win.png").scaled(ui->winLabel->width(),ui->winLabel->height(), Qt::KeepAspectRatio));
+    ui->winLabel->setVisible(false);
 }
 
 Viewer::~Viewer()
@@ -52,6 +53,11 @@ void Viewer::compiled(bool success){
 void Viewer::winEvent(){
 
 }
+
+void Viewer::winDisplay(bool show){
+    ui->winLabel->setVisible(show);
+}
+
 
 void Viewer::on_actionNew_triggered()
 {
@@ -232,7 +238,7 @@ void Viewer::paintEvent(QPaintEvent *){
 
             }else if(maze->getObject(i, j) == maze->space){
                 pixmap.fill(spaceColor);
-
+                pixmap = *blockPix;
             }
             painter.drawPixmap(i * pos + drawingPivot.x(), j * pos + drawingPivot.y(), blockSize, blockSize, pixmap);
         }
@@ -351,6 +357,7 @@ void Viewer::on_startButton_clicked(bool gameStarted)
          ui->startButton->setStyleSheet("background-color :green");
         checked = true;
         gameStarted = false;
+        winDisplay(false);
         emit gameStop();
     }
 }

@@ -5,6 +5,8 @@
         <file>res/start-point.png</file>
         <file>res/wall.png</file>
         <file>res/robot.png</file>
+        <file>res/block.png</file>
+        <file>res/win.png</file>
     </qresource>
     <qresource prefix="/Document">
         <file>SumbitDocument/A9 video.mp4</file>

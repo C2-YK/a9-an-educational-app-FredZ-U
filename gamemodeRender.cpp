@@ -27,6 +27,8 @@ void GameModeRender::setMazeData(Maze m, QList<b2Vec2> p, float unitLength){
             maze[maze.size()-1].hasTexture = true;
         }else{
             maze.append(RenderObject(location, spaceColor, (int)unitLength - 1));
+            maze[maze.size()-1].setTexture(blockPix);
+            maze[maze.size()-1].hasTexture = true;
 
         }/*else if(map[i] == m.start){
             maze.append(RenderObject(location, startColor, (int)unitLength));

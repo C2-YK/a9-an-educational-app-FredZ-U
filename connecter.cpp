@@ -42,6 +42,7 @@ void Connecter::connect_Viewer_GameMode(){
     QObject::connect(&viewer, &Viewer::gameStart, &gameMode, &GameMode::start);
     QObject::connect(&viewer, &Viewer::gameStop, &gameMode, &GameMode::stop);
     QObject::connect(&gameMode, &GameMode::winEvent, &viewer, &Viewer::winEvent);
+    QObject::connect(&gameMode, &GameMode::winDisplay, &viewer, &Viewer::winDisplay);
 }
 void Connecter::connect_Viewer_GameModeRender(){
     QObject::connect(&gameModeRender, &GameModeRender::updateScene, &viewer, &Viewer::updateScene);

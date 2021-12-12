@@ -33,6 +33,7 @@ public slots:
     void updateScene(const QPixmap& scene);
     void compiled(bool success);
     void winEvent();
+    void winDisplay(bool show);
 signals:
     void resize(int height, int width);
     void switchToolTo(int toolIndex);
@@ -131,6 +132,7 @@ private:
     const QPixmap *wallPix = new QPixmap(":/icon/res/wall.png");
     const QPixmap *coinPix = new QPixmap(":/icon/res/coin.png");
     const QPixmap *robotPix = new QPixmap(":/icon/res/robot.png");
+    const QPixmap *blockPix = new QPixmap(":/icon/res/block.png");
 
     int menubarHeight;
 };
