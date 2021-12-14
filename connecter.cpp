@@ -50,6 +50,7 @@ void Connecter::connect_Viewer_GameModeRender(){
 void Connecter::connect_Viewer_MazeEditor(){
     QObject::connect(&viewer, &Viewer::switchToolTo, &mazeEditor, &MazeEditor::switchTool);
     QObject::connect(&viewer, &Viewer::useToolOn, &mazeEditor, &MazeEditor::useToolOn);
+    //QObject::connect(&viewer, &Viewer::resize, &mazeEditor, &mazeEditor::resize);
 }
 
 void Connecter::connect_GameMode_GameModeRender(){

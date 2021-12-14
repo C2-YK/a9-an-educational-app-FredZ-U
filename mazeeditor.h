@@ -15,6 +15,7 @@ public:
 public slots:
     void switchTool(int toolIndex);
     void useToolOn(QPoint position);
+    void resize(int height, int width);
 signals:
     void success(QString, bool);
 private:

@@ -142,7 +142,10 @@ void Viewer::on_actionAbout_triggered()
 
 void Viewer::on_actionResize_triggered()
 {
-    //emit resize
+//    int size = QInputDialog::getInt(this, "Resize", "Canvas Size(smallest size is 2):");
+//    if(size >=2 ){
+//        emit resize(size, size);
+//    }
 }
 
 void Viewer::mousePressEvent(QMouseEvent * event){

@@ -9,6 +9,7 @@
 #include <QListWidgetItem>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QInputDialog>
 
 #include "maze.h"
 

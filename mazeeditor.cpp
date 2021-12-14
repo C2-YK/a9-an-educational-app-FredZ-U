@@ -10,7 +10,9 @@ void MazeEditor::setMaze(Maze* target){
 void MazeEditor::switchTool(int toolIndex){
     this->toolIndex = toolIndex;
 }
-
+void MazeEditor::resize(int height, int width){
+    //emit updatePreviewer();
+}
 void MazeEditor::useToolOn(QPoint position){
     if(position.x() >= target->getWidth() || position.x() < 0){
         return;
