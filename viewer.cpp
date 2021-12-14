@@ -145,19 +145,6 @@ void Viewer::on_actionResize_triggered()
     //emit resize
 }
 
-
-//void Viewer::on_startButton_clicked()
-//{
-//    ui->startButton->setText("Stop");
-//    ui->startButton->
-//    if(gameStarted){
-
-//        //emit gameStop();
-//    }else{
-//        //emit gameStart();
-//    }
-//}
-
 void Viewer::mousePressEvent(QMouseEvent * event){
     // in the maze editor tab
     if(currentTabIndex == 0)
