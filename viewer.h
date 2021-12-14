@@ -57,8 +57,6 @@ private slots:
 
     void on_actionNew_triggered();
 
-    void on_actionOpen_triggered();
-
     void on_actionSave_triggered();
 
     void on_actionLoad_to_Editor_triggered();
