@@ -83,20 +83,6 @@ void Viewer::on_actionNew_triggered()
 }
 }
 
-
-//void Viewer::on_actionOpen_triggered()
-//{
-//    QString filename = QFileDialog::getOpenFileName(
-//                   this,
-//                   tr("Open File"),
-//                   "C://",
-//                   "Maze Project (*.mep);;"
-//                );
-//    //Filesystem
-//    //emit
-//}
-
-
 void Viewer::on_actionSave_triggered()
 {
     QString fileDir = QFileDialog::getSaveFileName(
