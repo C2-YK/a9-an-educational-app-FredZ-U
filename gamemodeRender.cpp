@@ -19,7 +19,7 @@ void GameModeRender::setMazeData(Maze m, QList<b2Vec2> p, float unitLength){
         if(map[i] == m.wall){
             maze.append(RenderObject(location, wallColor, (int)unitLength - 1));
             maze[maze.size()-1].setTexture(wallPix);
-           maze[maze.size()-1].hasTexture = true;
+            maze[maze.size()-1].hasTexture = true;
         }else if(map[i] == m.coin){
             maze.append(RenderObject(location, coinColor, (int)unitLength - 1));
             maze[maze.size()-1].setTexture(coinPix);
@@ -28,7 +28,6 @@ void GameModeRender::setMazeData(Maze m, QList<b2Vec2> p, float unitLength){
             maze.append(RenderObject(location, spaceColor, (int)unitLength - 1));
             maze[maze.size()-1].setTexture(blockPix);
             maze[maze.size()-1].hasTexture = true;
-
         }
     }
     render();
@@ -37,7 +36,6 @@ void GameModeRender::setMazeData(Maze m, QList<b2Vec2> p, float unitLength){
 void GameModeRender::setPlayerPosition(b2Vec2 pp){
     int x = (int) (pp.x - player.getSize()/2) * scale+10;
     int y = (int) (pp.y - player.getSize()/2) * scale+10;
-
     player.setLocation(QPoint(x, y));
 }
 
@@ -68,13 +66,10 @@ void GameModeRender::render(){
     QPainter p = QPainter(&scene);
     for(int i = 0; i < maze.size(); i++){
         if(maze[i].hasTexture){
-
            p.drawPixmap(maze[i].getLocation().x(), maze[i].getLocation().y(), maze[i].getSize(), maze[i].getSize(), maze[i].getTexture());
-
         }
         else{
             p.fillRect(maze[i].getLocation().x(), maze[i].getLocation().y(),maze[i].getSize(), maze[i].getSize(), maze[i].getColor());
-
         }
     } 
     //Draw the player

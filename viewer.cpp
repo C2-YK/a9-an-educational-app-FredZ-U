@@ -200,18 +200,12 @@ void Viewer::paintEvent(QPaintEvent *){
     QPixmap pixmap;
     for(int i = 0; i < maze->getWidth(); i++){
         for(int j = 0; j < maze->getHeight(); j++){
-
-
             if(maze->getObject(i, j) == maze->wall){
                 pixmap = *wallPix;
-
             }else if(maze->getObject(i, j) == maze->coin){
                 pixmap = *coinPix;
-
             }else if(maze->getObject(i, j) == maze->start){
                 pixmap = *robotPix;
-
-
             }else if(maze->getObject(i, j) == maze->space){
                 pixmap.fill(spaceColor);
                 pixmap = *blockPix;
