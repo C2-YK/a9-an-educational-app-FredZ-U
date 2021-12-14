@@ -4,7 +4,6 @@
 GameModeRender::GameModeRender()
 {
     rendering = false;
-    //player.setColor(playerColor);
     player.setTexture(robotPix);
 }
 
@@ -30,10 +29,7 @@ void GameModeRender::setMazeData(Maze m, QList<b2Vec2> p, float unitLength){
             maze[maze.size()-1].setTexture(blockPix);
             maze[maze.size()-1].hasTexture = true;
 
-        }/*else if(map[i] == m.start){
-            maze.append(RenderObject(location, startColor, (int)unitLength));
-        }*/
-
+        }
     }
     render();
 }
@@ -72,7 +68,7 @@ void GameModeRender::render(){
     QPainter p = QPainter(&scene);
     for(int i = 0; i < maze.size(); i++){
         if(maze[i].hasTexture){
-            //used to be fillRect
+
            p.drawPixmap(maze[i].getLocation().x(), maze[i].getLocation().y(), maze[i].getSize(), maze[i].getSize(), maze[i].getTexture());
 
         }
@@ -81,7 +77,7 @@ void GameModeRender::render(){
 
         }
     } 
-    //It used to be fillRect
+    //Draw the player
     p.drawPixmap(player.getLocation().x(), player.getLocation().y(), player.getSize(), player.getSize(), player.getTexture());
     emit updateScene(scene);
 }

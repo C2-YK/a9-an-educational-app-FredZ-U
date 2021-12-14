@@ -121,8 +121,8 @@ private:
     const QColor wallColor = QColor(0, 0, 0, 255);
     const QColor coinColor = QColor(255, 255, 0, 255);
     const QColor spaceColor = QColor(255, 255, 255, 255);
-    const QColor startColor = QColor(0, 255, 255, 255);
-    const QColor playerColor = QColor(0, 0, 255, 255);
+//    const QColor startColor = QColor(0, 255, 255, 255);
+//    const QColor playerColor = QColor(0, 0, 255, 255);
 
      QImage *wallImg = new QImage(":/icon/res/wall.png");
     const QImage *coinImg = new QImage(":/icon/res/coin.png");
