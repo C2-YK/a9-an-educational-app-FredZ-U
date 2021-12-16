@@ -181,3 +181,111 @@ int Maze::getObject(int x, int y){
 int& Maze::objectAt(int x, int y){
     return map[getIndex(QPoint(x, y))];
 }
+
+
+// Check the solution by finding a path way from the start point to coins
+bool Maze::hasSolution()
+{
+    // If there exists no coins nor start, return false;
+    if(!map.contains(start) || !map.contains(coin))
+        return false;
+
+    // record coins locations in the map
+    QList<int> coinLocations;
+    int coinIndex = 0;
+    foreach(int mapInfo, map)
+    {
+        if(mapInfo == coin)
+            coinLocations.append(coinIndex);
+        coinIndex++;
+    }
+    // check if there is a path to the starter for each coin
+    foreach(int coinIndex, coinLocations)
+        if(isCoinToStart(coinIndex))
+            return true;
+
+    return false;
+}
+
+// For a certain coin, check if there exists a path to the starter.
+// A helper method only for the hasSolution method.
+bool Maze:: isCoinToStart(int coinIndex)
+{
+
+    int startIndex = map.indexOf(start);
+    // make a copy
+    QList<int> *copy = new QList<int>(map);
+
+    QPoint coinPoint = converting(coinIndex);
+
+    coloring(coinPoint,*copy,origin);
+    // after coloring, if they have the same value, then there exists a path between them.
+    bool result = copy->at(startIndex) == covered;
+    delete copy;
+
+    return result;
+}
+
+// Using coloring way to find out a path from one point to another.
+// p.y() represents the coordinate of y-axis; p.x() represent the coordinate of x-axis.
+void Maze:: coloring(QPoint p, QList<int> &map, int from)
+{
+    // if it is a wall, return
+    if(map[getIndex(p)] == wall)
+        return;
+    // if find a cycle, return
+    else if(map[getIndex(p)] == covered)
+        return;
+    else
+    {
+        // coloring
+        map[getIndex(p)] = covered;
+        // move around and prepare coloring
+        QPoint moveToRight(1,0);
+        if(!isOutOfRange(p+moveToRight)&&from != fromRight)
+        {
+            QPoint rightIncrement = p + moveToRight;
+            if(map[getIndex(rightIncrement)]!=wall)
+                coloring(rightIncrement,map,toRight);
+        }
+
+        QPoint moveToLeft(-1,0);
+        if(!isOutOfRange(p+moveToLeft)&&from != fromLeft)
+        {
+            QPoint leftIncrement = p + moveToLeft;
+            if(map[getIndex(leftIncrement)]!=wall)
+                coloring(leftIncrement,map,toLeft);
+        }
+
+        QPoint moveToDown(0,1);
+        if(!isOutOfRange(p+moveToDown)&&from != fromDown)
+        {
+            QPoint downIncrement = p + moveToDown;
+            if(map[getIndex(downIncrement)]!=wall)
+                coloring(downIncrement,map,toDown);
+        }
+
+        QPoint moveToUp(0,-1);
+        if(!isOutOfRange(p+moveToUp)&&from != fromUp)
+        {
+            QPoint upIncrement = p + moveToUp;
+            if(map[getIndex(upIncrement)]!=wall)
+                coloring(upIncrement,map,toUp);
+        }
+    }
+}
+
+// Convert an int to a point.
+QPoint Maze:: converting(int index)
+{
+    int y = index % width;
+    int x = index / width;
+    return QPoint(x,y);
+}
+
+// Check if the point p is in the map.
+bool Maze:: isOutOfRange(QPoint p)
+{
+    return getIndex(p) >= height * width || getIndex(p) <= 0;
+}
+

@@ -2,7 +2,6 @@
 #define MAZE_H
 #include <QList>
 #include <QPoint>
-#include <QDebug>
 
 class Maze
 {
@@ -32,6 +31,21 @@ public:
     const int start = 1;
     const int wall = 2;
     const int coin = 3;
+    // constants used for the algorithm
+    const int origin = 0;
+    const int covered = -1;
+
+    const int toRight = 1;
+    const int fromLeft = 1;
+
+    const int toLeft = 2;
+    const int fromRight = 2;
+
+    const int toDown = 3;
+    const int fromUp = 3;
+
+    const int toUp = 4;
+    const int fromDown = 4;
 private:
     QPoint startPoint = QPoint(1, 1);
     int height;
@@ -43,6 +57,13 @@ private:
     void fillEdgesWithWalls();
     int getIndex(QPoint postion);
     int& objectAt(int x, int y);
+    // helper method for the algorithm to finding a solution
+    bool hasSolution();
+    bool isCoinToStart(int);
+    void coloring(QPoint,QList<int>&,int);
+    QPoint converting(int);
+    bool isOutOfRange(QPoint);
+
 };
 
 #endif // MAZE_H
