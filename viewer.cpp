@@ -85,16 +85,19 @@ void Viewer::on_actionNew_triggered()
 
 void Viewer::on_actionSave_triggered()
 {
-    QString fileDir = QFileDialog::getSaveFileName(
-                    this,
-                    tr("Choose Directory"),
-                    "C://",
-                    "Maze Project (*.mep);;"
-                    );
-    changed = false;
-        //Filesystem
-        //emit
-    emit saveMazeToFile(fileDir);
+    if(maze->hasSolution())
+    {
+        QString fileDir = QFileDialog::getSaveFileName(
+                        this,
+                        tr("Choose Directory"),
+                        "C://",
+                        "Maze Project (*.mep);;"
+                        );
+        changed = false;
+            //Filesystem
+            //emit
+        emit saveMazeToFile(fileDir);
+    }
 }
 
 void Viewer::on_actionLoad_to_Editor_triggered(){

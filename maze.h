@@ -31,6 +31,21 @@ public:
     const int start = 1;
     const int wall = 2;
     const int coin = 3;
+
+    bool hasSolution();
+
+private:
+    QPoint startPoint = QPoint(1, 1);
+    int height;
+    int width;
+    int coins;
+    QList<int> map;
+    //helper
+    void initMap();
+    void fillEdgesWithWalls();
+    int getIndex(QPoint postion);
+    int& objectAt(int x, int y);
+
     // constants used for the algorithm
     const int origin = 0;
     const int covered = -1;
@@ -46,19 +61,8 @@ public:
 
     const int toUp = 4;
     const int fromDown = 4;
-private:
-    QPoint startPoint = QPoint(1, 1);
-    int height;
-    int width;
-    int coins;
-    QList<int> map;
-    //helper
-    void initMap();
-    void fillEdgesWithWalls();
-    int getIndex(QPoint postion);
-    int& objectAt(int x, int y);
     // helper method for the algorithm to finding a solution
-    bool hasSolution();
+
     bool isCoinToStart(int);
     void coloring(QPoint,QList<int>&,int);
     QPoint converting(int);

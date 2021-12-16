@@ -25,7 +25,6 @@ void GameMode::stop(){
 }
 
 void GameMode::initGame(){
-    qDebug()<<"init game";
     int w = masterMaze->getWidth();
     int h = masterMaze->getHeight();
     win = false;
@@ -108,14 +107,12 @@ void GameMode::updateWorld(){
     checkWin();
     if(win){
         timer.stop();
-        qDebug()<<"win";
         emit winEvent();
         emit winDisplay(true);
     }
     updateCount++;
     if(updateCount >= botStep/timerStep){
         int action = bot->act();
-        qDebug()<<action;
         //reset player movement
         player->SetLinearVelocity(b2Vec2(0, 0));
         if(action == bot->Forward){
@@ -132,7 +129,6 @@ void GameMode::updateWorld(){
     world->Step(1.0/60.0, 6, 2);
     trigger();
     if(player->GetPosition() == prePlayerPos && prePlayerAction == bot->Forward){
-        qDebug()<<"hit";
         bot->hit();
     }
     prePlayerPos = player->GetPosition();
