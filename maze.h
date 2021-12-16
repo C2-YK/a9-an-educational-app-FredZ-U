@@ -46,25 +46,11 @@ private:
     int getIndex(QPoint postion);
     int& objectAt(int x, int y);
 
-    // constants used for the algorithm
-    const int origin = 0;
+    // constant used for the algorithm
     const int covered = -1;
-
-    const int toRight = 1;
-    const int fromLeft = 1;
-
-    const int toLeft = 2;
-    const int fromRight = 2;
-
-    const int toDown = 3;
-    const int fromUp = 3;
-
-    const int toUp = 4;
-    const int fromDown = 4;
     // helper method for the algorithm to finding a solution
-
     bool isCoinToStart(int);
-    void coloring(QPoint,QList<int>&,int);
+    void coloring(QPoint,QList<int>&);
     QPoint converting(int);
     bool isOutOfRange(QPoint);
 
