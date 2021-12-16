@@ -173,16 +173,6 @@
        </rect>
       </property>
      </widget>
-     <widget class="QListWidget" name="blockList">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>470</y>
-        <width>511</width>
-        <height>61</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="startButton">
       <property name="geometry">
        <rect>
@@ -220,97 +210,6 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="DoButton">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>390</y>
-        <width>80</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Do</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="UntilButton">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>410</y>
-        <width>80</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Until Hit</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="RightButton">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>430</y>
-        <width>80</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Right</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="LeftButton">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>450</y>
-        <width>80</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Left</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="ForwardButton">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>470</y>
-        <width>80</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Forward</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="deleteButton">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>490</y>
-        <width>80</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="cleanButton">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>510</y>
-        <width>80</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Clean</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="winLabel">
       <property name="geometry">
        <rect>
@@ -326,6 +225,124 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>460</y>
+        <width>598</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <item>
+        <widget class="QPushButton" name="DoButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Do</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="UntilButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Until Hit</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="RightButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Right</string>
+         </property>
+         <property name="icon">
+          <iconset resource="Resource.qrc">
+           <normaloff>:/icon/res/right rotate.png</normaloff>:/icon/res/right rotate.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="LeftButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Left</string>
+         </property>
+         <property name="icon">
+          <iconset resource="Resource.qrc">
+           <normaloff>:/icon/res/left rotate.png</normaloff>:/icon/res/left rotate.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ForwardButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Forward</string>
+         </property>
+         <property name="icon">
+          <iconset resource="Resource.qrc">
+           <normaloff>:/icon/res/move forward.png</normaloff>:/icon/res/move forward.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="deleteButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Delete</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cleanButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Clean</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
