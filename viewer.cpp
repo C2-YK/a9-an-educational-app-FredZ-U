@@ -120,6 +120,7 @@ void Viewer::on_actionLoad_to_Game_triggered(){
                 "Maze Project (*.mep);;"
 
                 );
+    qDebug()<<filename;
     emit loadMazeToGamemode(filename);
 }
 
@@ -333,5 +334,47 @@ void Viewer::on_startButton_clicked(bool gameStarted)
         winDisplay(false);
         emit gameStop();
     }
+}
+
+
+void Viewer::on_Level1Button_clicked()
+{
+    emit loadMazeToEditor(":/ExampleLevels/levels/Level1.mep");
+    emit loadMazeToGamemode(":/ExampleLevels/levels/Level1.mep");
+}
+
+
+void Viewer::on_Level2Button_clicked()
+{
+    emit loadMazeToEditor(":/ExampleLevels/levels/Level2.mep");
+    emit loadMazeToGamemode(":/ExampleLevels/levels/Level2.mep");
+}
+
+
+void Viewer::on_Level3Button_clicked()
+{
+    emit loadMazeToEditor(":/ExampleLevels/levels/Level3.mep");
+    emit loadMazeToGamemode(":/ExampleLevels/levels/Level3.mep");
+}
+
+
+void Viewer::on_Level4Button_clicked()
+{
+    emit loadMazeToEditor(":/ExampleLevels/levels/Level4.mep");
+    emit loadMazeToGamemode(":/ExampleLevels/levels/Level4.mep");
+}
+
+
+void Viewer::on_Level5Button_clicked()
+{
+    emit loadMazeToEditor(":/ExampleLevels/levels/Level5.mep");
+    emit loadMazeToGamemode(":/ExampleLevels/levels/Level5.mep");
+}
+
+
+void Viewer::on_Level6Button_clicked()
+{
+    emit loadMazeToEditor(":/ExampleLevels/levels/Level6.mep");
+    emit loadMazeToGamemode(":/ExampleLevels/levels/Level6.mep");
 }
 

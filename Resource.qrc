@@ -15,4 +15,12 @@
         <file>SumbitDocument/A9 video.mp4</file>
         <file>SumbitDocument/Document_ A9c-Sprint2.pdf</file>
     </qresource>
+    <qresource prefix="/ExampleLevels">
+        <file>levels/Level1.mep</file>
+        <file>levels/Level2.mep</file>
+        <file>levels/Level3.mep</file>
+        <file>levels/Level4.mep</file>
+        <file>levels/Level5.mep</file>
+        <file>levels/Level6.mep</file>
+    </qresource>
 </RCC>

@@ -93,6 +93,18 @@ private slots:
 
     void on_startButton_clicked(bool checked);
 
+    void on_Level1Button_clicked();
+
+    void on_Level2Button_clicked();
+
+    void on_Level3Button_clicked();
+
+    void on_Level4Button_clicked();
+
+    void on_Level5Button_clicked();
+
+    void on_Level6Button_clicked();
+
 private:
     Ui::Viewer *ui;
     Maze* maze;
