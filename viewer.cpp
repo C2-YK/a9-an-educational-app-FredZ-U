@@ -98,6 +98,13 @@ void Viewer::on_actionSave_triggered()
             //emit
         emit saveMazeToFile(fileDir);
     }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText("The maze has no solution. Before saving the maze, please be sure there exists at least one solution.");
+        msgBox.exec();
+    }
 }
 
 void Viewer::on_actionLoad_to_Editor_triggered(){
