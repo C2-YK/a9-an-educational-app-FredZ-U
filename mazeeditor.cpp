@@ -31,6 +31,10 @@ void MazeEditor::useToolOn(QPoint position){
     }
     //xemit updatePreviewer();
 }
+
+void MazeEditor::reset(){
+    *target = Maze();
+}
 /*
  * Private
  */
