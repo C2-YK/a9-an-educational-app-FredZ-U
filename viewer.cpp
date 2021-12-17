@@ -61,7 +61,7 @@ void Viewer::winDisplay(bool show){
 
 void Viewer::on_actionNew_triggered()
 {
-   // if(changed){
+    if(changed == false){
             QMessageBox msgBox;
             msgBox.setText("The maze has not been modified");
             msgBox.setInformativeText("Do you want to save your changes?");
@@ -71,16 +71,17 @@ void Viewer::on_actionNew_triggered()
             switch (ret) {
               case QMessageBox::Save:
                   on_actionSave_triggered();
+
                   break;
               case QMessageBox::Discard:
+
                   break;
               case QMessageBox::Cancel:
                   return;
               default:
                   // should never be reached
                 return;
-       //     }
-     qDebug() << changed;
+            }
      emit reset();
 }
 }
@@ -101,6 +102,7 @@ void Viewer::on_actionSave_triggered()
     else
     {
         QMessageBox msgBox;
+        changed = false;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText("The maze has no solution. Before saving the maze, please be sure there exists at least one solution.");
         msgBox.exec();
