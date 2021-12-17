@@ -32,6 +32,9 @@ void Viewer::loadToEditorCallback(bool success){
 }
 
 void Viewer::loadToGamemodeCallback(bool success){
+    if(success){
+
+    }
 
 }
 
@@ -254,35 +257,35 @@ void Viewer::on_tabWidget_tabBarClicked(int index)
 
 void Viewer::on_DoButton_clicked()
 {
-    addItemToActionList("Do");
+    addItemToActionList("Do {");
     emit addDo();
 }
 
 
 void Viewer::on_UntilButton_clicked()
 {
-    addItemToActionList("Until Hit");
+    addItemToActionList("Until Hit }");
     emit addUntilHit();
 }
 
 
 void Viewer::on_RightButton_clicked()
 {
-    addItemToActionList("Right");
+    addItemToActionListWithIcon(QIcon(*rightArrowPix),"Right");
     emit addRight();
 }
 
 
 void Viewer::on_LeftButton_clicked()
 {
-    addItemToActionList("Left");
+    addItemToActionListWithIcon(QIcon(*leftArrowPix),"Left");
     emit addLeft();
 }
 
 
 void Viewer::on_ForwardButton_clicked()
 {
-    addItemToActionList("Forward");
+    addItemToActionListWithIcon(QIcon(*forwardArrowPix), "Forward");
     emit addForward();
 }
 
@@ -295,6 +298,15 @@ void Viewer::addItemToActionList(QString name){
     actionList.append(item);
 }
 
+void Viewer::addItemToActionListWithIcon(QIcon pic, QString name){
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setData(0, name);
+    item->setData(1, actionList.size());
+    item->setIcon(pic);
+    ui->actionList->addItem(item);
+    ui->actionList->setCurrentItem(item);
+    actionList.append(item);
+}
 
 void Viewer::on_deleteButton_clicked()
 {

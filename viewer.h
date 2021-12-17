@@ -118,7 +118,7 @@ private:
     void mouseMoveEvent(QMouseEvent *);
     void wheelEvent(QWheelEvent *);
     void addItemToActionList(QString name);
-
+    void addItemToActionListWithIcon(QIcon pic, QString name);
     int tool_space = 0;
     int tool_wall = 1;
     int tool_coin = 2;
@@ -143,6 +143,9 @@ private:
     const QPixmap *robotPix = new QPixmap(":/icon/res/robot.png");
     const QPixmap *blockPix = new QPixmap(":/icon/res/block.png");
 
+    const QPixmap *leftArrowPix = new QPixmap(":/icon/res/left rotate.png");
+    const QPixmap *rightArrowPix = new QPixmap(":/icon/res/right rotate.png");
+    const QPixmap *forwardArrowPix = new QPixmap(":/icon/res/move forward.png");
     int menubarHeight;
 };
 #endif // VIEWER_H
