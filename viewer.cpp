@@ -61,7 +61,7 @@ void Viewer::winDisplay(bool show){
 
 void Viewer::on_actionNew_triggered()
 {
-    if(changed == false){
+    if(!changed){
             QMessageBox msgBox;
             msgBox.setText("The maze has not been modified");
             msgBox.setInformativeText("Do you want to save your changes?");
@@ -71,7 +71,6 @@ void Viewer::on_actionNew_triggered()
             switch (ret) {
               case QMessageBox::Save:
                   on_actionSave_triggered();
-
                   break;
               case QMessageBox::Discard:
 
@@ -83,7 +82,7 @@ void Viewer::on_actionNew_triggered()
                 return;
             }
      emit reset();
-}
+    }
 }
 
 void Viewer::on_actionSave_triggered()
