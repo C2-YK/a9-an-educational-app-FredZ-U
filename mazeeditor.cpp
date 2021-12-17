@@ -27,7 +27,7 @@ void MazeEditor::useToolOn(QPoint position){
     }else{
         changeStartTo(position);
     }
-    //xemit updatePreviewer();
+
 }
 
 void MazeEditor::reset(){
@@ -39,19 +39,19 @@ void MazeEditor::reset(){
 
 void MazeEditor::addWall(QPoint position){
     bool successed = target->addWall(position.x(), position.y());
-    emit success("addWall",successed);
+    emit success(successed);
 }
 void MazeEditor::addSpace(QPoint position){
     bool successed = target->addSpace(position.x(), position.y());
-    emit success("addSpace",successed);
+    emit success(successed);
 }
 void MazeEditor::addCoin(QPoint position){
     bool successed = target->addCoin(position.x(), position.y());
-    emit success("addCoin",successed);
+    emit success(successed);
 }
 void MazeEditor::changeStartTo(QPoint position){
     bool successed = target -> changeStartTo(position.x(), position.y());
-    emit success("changeStart",successed);
+    emit success(successed);
 }
 
 

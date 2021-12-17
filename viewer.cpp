@@ -61,7 +61,7 @@ void Viewer::winDisplay(bool show){
 
 void Viewer::on_actionNew_triggered()
 {
-    if(!changed){
+    if(changed){
             QMessageBox msgBox;
             msgBox.setText("The maze has not been modified");
             msgBox.setInformativeText("Do you want to save your changes?");
@@ -69,20 +69,20 @@ void Viewer::on_actionNew_triggered()
             msgBox.setDefaultButton(QMessageBox::Save);
             int ret = msgBox.exec();
             switch (ret) {
-              case QMessageBox::Save:
-                  on_actionSave_triggered();
-                  break;
-              case QMessageBox::Discard:
-
-                  break;
-              case QMessageBox::Cancel:
-                  return;
-              default:
+                case QMessageBox::Save:
+                    on_actionSave_triggered();
+                    break;
+                case QMessageBox::Discard:
+                    break;
+                case QMessageBox::Cancel:
+                    return;
+                default:
                   // should never be reached
                 return;
             }
-     emit reset();
+        emit reset();
     }
+    emit reset();
 }
 
 void Viewer::on_actionSave_triggered()
@@ -95,18 +95,15 @@ void Viewer::on_actionSave_triggered()
                         "C://",
                         "Maze Project (*.mep);;"
                         );
-        changed = false;
         emit saveMazeToFile(fileDir);
     }
     else
     {
         QMessageBox msgBox;
-        changed = false;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText("The maze has no solution. Before saving the maze, please be sure there exists at least one solution.");
         msgBox.exec();
     }
-    qDebug() << changed;
 }
 
 void Viewer::on_actionLoad_to_Editor_triggered(){
@@ -373,3 +370,9 @@ void Viewer::on_Level6Button_clicked()
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level6.mep");
 }
 
+
+void Viewer::changedCallBack(bool successed)
+{
+    changed = changed || successed;
+
+}

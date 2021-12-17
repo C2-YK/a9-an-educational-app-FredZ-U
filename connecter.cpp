@@ -51,7 +51,9 @@ void Connecter::connect_Viewer_MazeEditor(){
     QObject::connect(&viewer, &Viewer::switchToolTo, &mazeEditor, &MazeEditor::switchTool);
     QObject::connect(&viewer, &Viewer::useToolOn, &mazeEditor, &MazeEditor::useToolOn);
     QObject::connect(&viewer, &Viewer::reset, &mazeEditor, &MazeEditor::reset);
+    QObject::connect(&mazeEditor,&MazeEditor::success,&viewer,&Viewer::changedCallBack);
 }
+
 
 void Connecter::connect_GameMode_GameModeRender(){
     QObject::connect(&gameMode, &GameMode::updatePlayerPosition, &gameModeRender, &GameModeRender::setPlayerPosition);

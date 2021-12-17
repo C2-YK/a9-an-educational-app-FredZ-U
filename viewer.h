@@ -35,6 +35,7 @@ public slots:
     void compiled(bool success);
     void winEvent();
     void winDisplay(bool show);
+    void changedCallBack(bool);
 signals:
     void switchToolTo(int toolIndex);
     void useToolOn(QPoint position);
@@ -53,7 +54,6 @@ signals:
     void reset();
 
 private slots:
-
 
     void on_actionNew_triggered();
 
