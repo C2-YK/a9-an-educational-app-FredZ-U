@@ -199,12 +199,13 @@ bool Maze::hasSolution()
             coinLocations.append(coinIndex);
         coinIndex++;
     }
+    bool result = true;
     // check if there is a path to the starter for each coin
     foreach(int coinIndex, coinLocations)
-        if(isCoinToStart(coinIndex))
-            return true;
-
-    return false;
+    {
+        result = result && isCoinToStart(coinIndex);
+    }
+    return result;
 }
 
 // For a certain coin, check if there exists a path to the starter.
