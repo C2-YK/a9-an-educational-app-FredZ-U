@@ -61,7 +61,7 @@ void Viewer::winDisplay(bool show){
 
 void Viewer::on_actionNew_triggered()
 {
-    if(changed){
+   // if(changed){
             QMessageBox msgBox;
             msgBox.setText("The maze has not been modified");
             msgBox.setInformativeText("Do you want to save your changes?");
@@ -79,7 +79,9 @@ void Viewer::on_actionNew_triggered()
               default:
                   // should never be reached
                 return;
-            }
+       //     }
+     qDebug() << changed;
+     emit reset();
 }
 }
 
@@ -94,8 +96,6 @@ void Viewer::on_actionSave_triggered()
                         "Maze Project (*.mep);;"
                         );
         changed = false;
-            //Filesystem
-            //emit
         emit saveMazeToFile(fileDir);
     }
     else
@@ -105,6 +105,7 @@ void Viewer::on_actionSave_triggered()
         msgBox.setText("The maze has no solution. Before saving the maze, please be sure there exists at least one solution.");
         msgBox.exec();
     }
+    qDebug() << changed;
 }
 
 void Viewer::on_actionLoad_to_Editor_triggered(){
@@ -136,14 +137,6 @@ void Viewer::on_actionAbout_triggered()
     QMessageBox::information(this, "Instruction", "This game has two modes.\n1.Maze Editor is used for the users to draw the custom maze and save the maze in their machine.\n2.Game mode is used for the users to load the maze and add a list of commands to tell the robot to move following commands. If the robot collects all the gold, it will win the game. Among them, the most difficult to understand is do and until. When the player chooses do, it means the robot starts to operate, but when chooses until, the robot stops operating, so do and until should be the same number, otherwise an error will be reported.");
 }
 
-
-void Viewer::on_actionResize_triggered()
-{
-//    int size = QInputDialog::getInt(this, "Resize", "Canvas Size(smallest size is 2):");
-//    if(size >=2 ){
-//        emit resize(size, size);
-//    }
-}
 
 void Viewer::mousePressEvent(QMouseEvent * event){
     // in the maze editor tab

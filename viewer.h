@@ -36,7 +36,6 @@ public slots:
     void winEvent();
     void winDisplay(bool show);
 signals:
-    void resize(int height, int width);
     void switchToolTo(int toolIndex);
     void useToolOn(QPoint position);
     void saveMazeToFile(QString filename);
@@ -51,6 +50,7 @@ signals:
     void clearActions();
     void gameStart();
     void gameStop();
+    void reset();
 
 private slots:
 
@@ -64,8 +64,6 @@ private slots:
     void on_actionLoad_to_Game_triggered();
 
     void on_actionAbout_triggered();
-
-    void on_actionResize_triggered();
 
     void on_coinButton_clicked();
 
