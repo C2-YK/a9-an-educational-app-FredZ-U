@@ -133,7 +133,7 @@ void Viewer::on_actionLoad_to_Game_triggered(){
 
 void Viewer::on_actionAbout_triggered()
 {
-    QMessageBox::information(this, "Instruction", "This game has two modes.\n1.Sprite Editor is used for the users to draw the custom maze and save the maze in their machine.\n2.Game mode is used for the users to load the maze and add a list of commands to tell the robot to move following commands. If the robot collects all the gold, it will win the game. Among them, the most difficult to understand is do and until. When the player chooses do, it means the robot starts to operate, but when chooses until, the robot stops operating, so do and until should be the same number, otherwise an error will be reported.");
+    QMessageBox::information(this, "Instruction", "This game has two modes.\n1.Maze Editor is used for the users to draw the custom maze and save the maze in their machine.\n2.Game mode is used for the users to load the maze and add a list of commands to tell the robot to move following commands. If the robot collects all the gold, it will win the game. Among them, the most difficult to understand is do and until. When the player chooses do, it means the robot starts to operate, but when chooses until, the robot stops operating, so do and until should be the same number, otherwise an error will be reported.");
 }
 
 
@@ -346,42 +346,36 @@ void Viewer::on_startButton_clicked(bool gameStarted)
 
 void Viewer::on_Level1Button_clicked()
 {
-    emit loadMazeToEditor(":/ExampleLevels/levels/Level1.mep");
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level1.mep");
 }
 
 
 void Viewer::on_Level2Button_clicked()
 {
-    emit loadMazeToEditor(":/ExampleLevels/levels/Level2.mep");
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level2.mep");
 }
 
 
 void Viewer::on_Level3Button_clicked()
 {
-    emit loadMazeToEditor(":/ExampleLevels/levels/Level3.mep");
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level3.mep");
 }
 
 
 void Viewer::on_Level4Button_clicked()
 {
-    emit loadMazeToEditor(":/ExampleLevels/levels/Level4.mep");
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level4.mep");
 }
 
 
 void Viewer::on_Level5Button_clicked()
 {
-    emit loadMazeToEditor(":/ExampleLevels/levels/Level5.mep");
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level5.mep");
 }
 
 
 void Viewer::on_Level6Button_clicked()
 {
-    emit loadMazeToEditor(":/ExampleLevels/levels/Level6.mep");
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level6.mep");
 }
 
