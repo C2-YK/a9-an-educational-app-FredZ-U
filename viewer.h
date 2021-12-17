@@ -35,6 +35,7 @@ public slots:
     void compiled(bool success);
     void winEvent();
     void winDisplay(bool show);
+    void updateEditor();
 signals:
     void switchToolTo(int toolIndex);
     void useToolOn(QPoint position);
@@ -106,7 +107,7 @@ private slots:
 private:
     Ui::Viewer *ui;
     Maze* maze;
-    bool changed;
+    bool changed = false;
     bool checked = true;
     QPoint drawingPivot = QPoint(160,80);
     QPoint movePivot;

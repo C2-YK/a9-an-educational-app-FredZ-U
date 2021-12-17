@@ -28,6 +28,7 @@ void MazeEditor::useToolOn(QPoint position){
         changeStartTo(position);
     }
     //xemit updatePreviewer();
+    emit updateEditor();
 }
 
 void MazeEditor::reset(){

@@ -64,9 +64,9 @@ void Viewer::winDisplay(bool show){
 
 void Viewer::on_actionNew_triggered()
 {
-    if(!changed){
+    if(changed){
             QMessageBox msgBox;
-            msgBox.setText("The maze has not been modified");
+            msgBox.setText("The maze has been modified");
             msgBox.setInformativeText("Do you want to save your changes?");
             msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
             msgBox.setDefaultButton(QMessageBox::Save);
@@ -84,8 +84,10 @@ void Viewer::on_actionNew_triggered()
                   // should never be reached
                 return;
             }
-     emit reset();
+
     }
+    changed = false;
+    emit reset();
 }
 
 void Viewer::on_actionSave_triggered()
@@ -109,7 +111,7 @@ void Viewer::on_actionSave_triggered()
         msgBox.setText("The maze has no solution. Before saving the maze, please be sure there exists at least one solution.");
         msgBox.exec();
     }
-    qDebug() << changed;
+
 }
 
 void Viewer::on_actionLoad_to_Editor_triggered(){
@@ -385,3 +387,6 @@ void Viewer::on_Level6Button_clicked()
     emit loadMazeToGamemode(":/ExampleLevels/levels/Level6.mep");
 }
 
+void Viewer::updateEditor(){
+    changed = true;
+}

@@ -17,6 +17,7 @@ public slots:
     void useToolOn(QPoint position);
     void reset();
 signals:
+    void updateEditor();
     void success(QString, bool);
 private:
     Maze* target;
