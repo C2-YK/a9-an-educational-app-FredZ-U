@@ -65,7 +65,7 @@ void Viewer::winDisplay(bool show){
 
 void Viewer::on_actionNew_triggered()
 {
-    if(maze->hasSolution()){
+    if(changed){
             QMessageBox msgBox;
             msgBox.setText("The maze has been modified");
             msgBox.setInformativeText("Do you want to save your changes?");
