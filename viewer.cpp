@@ -10,6 +10,7 @@ Viewer::Viewer(QWidget *parent)
     menubarHeight = ui->menubar->height();
     ui->winLabel->setPixmap(QPixmap(":/icon/res/win.png").scaled(ui->winLabel->width(),ui->winLabel->height(), Qt::KeepAspectRatio));
     ui->winLabel->setVisible(false);
+
 }
 
 Viewer::~Viewer()
@@ -64,7 +65,7 @@ void Viewer::winDisplay(bool show){
 
 void Viewer::on_actionNew_triggered()
 {
-    if(changed){
+    if(maze->hasSolution()){
             QMessageBox msgBox;
             msgBox.setText("The maze has been modified");
             msgBox.setInformativeText("Do you want to save your changes?");
